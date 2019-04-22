@@ -2,9 +2,9 @@ package model;
 
 import java.util.Date;
 
-public class person extends AbstractCustomer implements IPerson {
+public class Person extends AbstractCustomer implements IPerson {
 
-	public person(String names, String emailAddress) {
+	public Person(String names, String emailAddress) {
 		super(names, emailAddress);
 		this.dob = dob;
 	}
