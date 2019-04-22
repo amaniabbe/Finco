@@ -11,9 +11,9 @@ public abstract class AbstractAccount implements IAccount {
 
 	protected ICustomer owner;
 
-	protected double interest;
+	protected double interest = 0.01;
 
-	private List<IEntry> entries = new ArrayList<>();
+	protected List<IEntry> entries = new ArrayList<>();
 
 	@Override
 	public double getBalance() {
@@ -67,7 +67,17 @@ public abstract class AbstractAccount implements IAccount {
 	@Override
 	public void addInterest() {
 		this.balance = balance + (balance * interest);
+		this.getOwner().sendEMail();
+	}
 
+	@Override
+	public String getAccountNumber() {
+		return this.accountNumber;
+	}
+
+	@Override
+	public List<IEntry> entries() {
+		return entries;
 	}
 
 }

@@ -8,6 +8,11 @@ public class Account extends AbstractAccount {
 		this.owner = customer;
 	}
 
+	@Override
+	public String getAccountNumber() {
+		return this.accountNumber;
+	}
+
 	
 
 }

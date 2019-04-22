@@ -9,6 +9,13 @@ public class Entry implements IEntry {
 	private String description;
 
 	private double amount;
+	
+	
+	public Entry(Date recordedDate,String description,double amount) {
+		this.recordedDate = recordedDate;
+		this.description = description;
+		this.amount = amount;
+	}
 
 	@Override
 	public Date getDate() {

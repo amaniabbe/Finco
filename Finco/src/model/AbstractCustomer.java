@@ -42,11 +42,8 @@ public abstract class AbstractCustomer implements ICustomer {
 		return this.accounts;
 	}
 
-	@Override
-	public ICustomer getCustomer(String name) {
-		return null;
-	}
-
+	
+	
 	public String getNames() {
 		return names;
 	}
