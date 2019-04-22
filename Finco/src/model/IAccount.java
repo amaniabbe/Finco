@@ -17,5 +17,7 @@ public interface IAccount {
 	void notifyObservers();
 
 	boolean deleteAccount();
+	
+	void addInterest();
 
 }

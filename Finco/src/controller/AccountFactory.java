@@ -1,4 +1,4 @@
-package factory;
+package controller;
 
 import model.Account;
 import model.ICustomer;

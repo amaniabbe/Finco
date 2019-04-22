@@ -12,10 +12,13 @@ public abstract class AbstractCustomer implements ICustomer {
 
 	protected String emailAddress;
 	
+	private Address address;
 	
-	 public AbstractCustomer(String names,String emailAddress) {
+	
+	 public AbstractCustomer(String names,String emailAddress,Address address) {
 		this.names = names;
 		this.emailAddress = emailAddress;
+		this.address = address;
 	}
 
 	@Override
@@ -43,5 +46,31 @@ public abstract class AbstractCustomer implements ICustomer {
 	public ICustomer getCustomer(String name) {
 		return null;
 	}
+
+	public String getNames() {
+		return names;
+	}
+
+	public void setNames(String names) {
+		this.names = names;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	
 
 }

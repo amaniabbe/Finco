@@ -3,13 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractAccount implements IAccount {
+public abstract class AbstractAccount implements IAccount {
 
 	protected String accountNumber;
 
 	protected double balance;
 
 	protected ICustomer owner;
+
+	protected double interest;
 
 	private List<IEntry> entries = new ArrayList<>();
 
@@ -60,6 +62,12 @@ public class AbstractAccount implements IAccount {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void addInterest() {
+		this.balance = balance + (balance * interest);
+
 	}
 
 }

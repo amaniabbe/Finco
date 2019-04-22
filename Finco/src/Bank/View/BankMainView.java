@@ -8,7 +8,7 @@ import Default.View.DefaultMainView;
 public class BankMainView extends DefaultMainView {
 	
 	public BankMainView() {
-		this.setTitle("Credit Card ");
+		this.setTitle("Bank View ");
 		List<String> list = Arrays.asList("Street" , "City" ,"State" , "ZIP" , "P/C" ,"Ch/S" , "Amount") ; 
 		setJScrollPane(list);
 	}

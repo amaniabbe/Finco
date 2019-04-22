@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Person extends AbstractCustomer implements IPerson {
 
-	public Person(String names, String emailAddress) {
-		super(names, emailAddress);
+	public Person(String names, String emailAddress,Address adress) {
+		super(names, emailAddress,adress);
 		this.dob = dob;
 	}
 
