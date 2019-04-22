@@ -4,11 +4,16 @@ import java.util.Date;
 
 public class person extends AbstractCustomer implements IPerson {
 
-	private Date dob;
-
-	public person(Date dob) {
+	public person(String names, String emailAddress) {
+		super(names, emailAddress);
 		this.dob = dob;
 	}
+
+
+
+	private Date dob;
+
+	
 
 	@Override
 	public Date getDateofBirth() {

@@ -11,6 +11,12 @@ public abstract class AbstractCustomer implements ICustomer {
 	protected String names;
 
 	protected String emailAddress;
+	
+	
+	 public AbstractCustomer(String names,String emailAddress) {
+		this.names = names;
+		this.emailAddress = emailAddress;
+	}
 
 	@Override
 	public boolean addAccount(IAccount account) {

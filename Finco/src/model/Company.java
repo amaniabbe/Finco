@@ -2,13 +2,14 @@ package model;
 
 public class Company extends AbstractCustomer implements ICompany {
 
+	public Company(String names, String emailAddress,Integer numberOfEmployees) {
+		super(names, emailAddress);
+	    this.numberOfEmployees = numberOfEmployees;	
+	}
+
 	private Integer numberOfEmployees;
 
-	public Company(String name, String emailAddress, Integer nberofEmployees) {
-		this.names = name;
-		this.emailAddress = emailAddress;
-		this.numberOfEmployees = nberofEmployees;
-	}
+	
 
 	@Override
 	public Integer getNumberOfEmployees() {
