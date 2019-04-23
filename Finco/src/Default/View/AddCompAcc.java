@@ -1,6 +1,8 @@
 package Default.View;
 
 import java.awt.*;
+import java.util.UUID;
+
 import javax.swing.*;
 
 import controller.Finco;
@@ -27,6 +29,7 @@ public class AddCompAcc extends javax.swing.JDialog {
 //		setSize(400,400);
 //		pack() ;
 		setVisible(false);
+		JTextField_ACNR.setVisible(false);
 
 //		JRadioButton_Chk.setText("Checkings");
 //		JRadioButton_Chk.setActionCommand("Checkings");
@@ -140,7 +143,7 @@ public class AddCompAcc extends javax.swing.JDialog {
 	}
 
 	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
-		parentframe.accountnr = JTextField_ACNR.getText();
+		parentframe.accountnr =  UUID.randomUUID().toString().split("-")[1].toUpperCase();
 		parentframe.clientName = JTextField_NAME.getText();
 		parentframe.street = JTextField_STR.getText();
 		parentframe.city = JTextField_CT.getText();
