@@ -68,7 +68,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 //        JScrollPane1.setBounds(12,92,444,160);
 //        JScrollPane1.getViewport().add(JTable1);
 //        JTable1.setBounds(0, 0, 420, 0);
-		List<String> list = Arrays.asList("AccountNr", "Name", "City", "P/C");
+		List<String> list = Arrays.asList("AccountNr", "Name", "Balance", "City", "P/C");
 		JScrollPane1 = new JScrollPane();
 		setJScrollPane(list);
 //        rowdata = new Object[8];
@@ -163,8 +163,9 @@ public class DefaultMainView extends javax.swing.JFrame {
 			for (IAccount a : c.getListOfAccounts()) {
 				rowdata[0] = a.getAccountNumber();
 				rowdata[1] = c.getNames();
-				rowdata[2] = c.getAddress().getCity();
-				rowdata[3] = c.getClass().getSimpleName();
+				rowdata[2] = a.getBalance();
+				rowdata[3] = c.getAddress().getCity();
+				rowdata[4] = c.getClass().getSimpleName();
 				model.addRow(rowdata);
 			}
 		}
@@ -257,22 +258,10 @@ public class DefaultMainView extends javax.swing.JFrame {
 
 	protected void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event) {
 
-		/*
-		 * construct a JDialog_AddCompAcc type object set the boundaries and show it
-		 */
-
 		AddCompAcc pac = new AddCompAcc(myframe);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
-		/*
-		 * if (newaccount) { // add row to table rowdata[0] = accountnr; rowdata[1] =
-		 * clientName; rowdata[2] = city;
-		 * 
-		 * rowdata[3] = "C"; model.addRow(rowdata);
-		 * JTable1.getSelectionModel().setAnchorSelectionIndex(-1); newaccount = false;
-		 * }
-		 */
 		refresh();
 
 	}
@@ -282,19 +271,13 @@ public class DefaultMainView extends javax.swing.JFrame {
 		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
 		if (selection >= 0) {
 			String accnr = (String) model.getValueAt(selection, 0);
+			accountType = (String) model.getValueAt(selection, 4);
 
 			// Show the dialog for adding deposit amount for the current mane
 			Deposit dep = new Deposit(myframe, accnr);
 			dep.setBounds(430, 15, 275, 140);
 			dep.show();
-			if (amountDeposit != null) {
-				// compute new amount
-				long deposit = Long.parseLong(amountDeposit);
-				String samount = (String) model.getValueAt(selection, 5);
-				long currentamount = Long.parseLong(samount);
-				long newamount = currentamount + deposit;
-				model.setValueAt(String.valueOf(newamount), selection, 5);
-			}
+
 		}
 
 	}
@@ -304,24 +287,13 @@ public class DefaultMainView extends javax.swing.JFrame {
 		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
 		if (selection >= 0) {
 			String accnr = (String) model.getValueAt(selection, 0);
+			accountType = (String) model.getValueAt(selection, 4);
 
 			// Show the dialog for adding withdraw amount for the current mane
 			Withdraw wd = new Withdraw(myframe, accnr);
 			wd.setBounds(430, 15, 275, 140);
 			wd.show();
-			if (amountDeposit != null) {
-				// compute new amount
-				long deposit = Long.parseLong(amountDeposit);
-				String samount = (String) model.getValueAt(selection, 5);
-				long currentamount = Long.parseLong(samount);
-				long newamount = currentamount - deposit;
-				model.setValueAt(String.valueOf(newamount), selection, 5);
-				if (newamount < 0) {
-					JOptionPane.showMessageDialog(JButton_Withdraw,
-							" Account " + accnr + " : balance is negative: $" + String.valueOf(newamount) + " !",
-							"Warning: negative balance", JOptionPane.WARNING_MESSAGE);
-				}
-			}
+
 		}
 
 	}
@@ -330,6 +302,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts",
 				"Add interest to all accounts", JOptionPane.WARNING_MESSAGE);
 		finco.addInterest();
+		refresh();
 
 	}
 }

@@ -2,6 +2,8 @@ package model;
 
 import java.util.Date;
 
+import javax.print.attribute.SetOfIntegerSyntax;
+
 public class Person extends AbstractCustomer implements IPerson {
 
 	public Person(String names, String emailAddress,Address adress) {

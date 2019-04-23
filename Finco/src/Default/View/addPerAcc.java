@@ -28,7 +28,6 @@ public class addPerAcc extends AddCompAcc {
 	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("account :"+JTextField_ACNR.getText());
 		parent.accountnr = UUID.randomUUID().toString().split("-")[1];
 		parent.clientName = JTextField_NAME.getText();
 		parent.street = JTextField_STR.getText();

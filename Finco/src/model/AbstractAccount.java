@@ -67,6 +67,7 @@ public  class AbstractAccount implements IAccount {
 	@Override
 	public void addInterest() {
 		this.balance = balance + (balance * interest);
+		
 		this.getOwner().sendEMail();
 	}
 

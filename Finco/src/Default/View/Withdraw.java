@@ -73,6 +73,9 @@ public class Withdraw extends javax.swing.JDialog {
 
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
 		parentframe.amountDeposit = JTextField_AMT.getText();
+		double amount = Double.parseDouble(parentframe.amountDeposit);
+		parentframe.finco.withdraw(accnr, amount,parentframe.accountType);
+		parentframe.refresh();
 		dispose();
 	}
 
