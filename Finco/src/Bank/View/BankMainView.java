@@ -27,8 +27,9 @@ public class BankMainView extends DefaultMainView {
 	private Object amountDeposit;
 
 	public BankMainView() {
-		this.setTitle("Credit Card ");
-		List<String> list = Arrays.asList("Street", "City", "State", "ZIP", "P/C", "Ch/S", "Amount");
+
+		this.setTitle("Bank View ");
+		List<String> list = Arrays.asList("Street" , "City" ,"State" , "ZIP" , "P/C" ,"Ch/S" , "Amount") ; 
 		setJScrollPane(list);
 	}
 

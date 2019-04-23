@@ -2,8 +2,9 @@ package model;
 
 public class Company extends AbstractCustomer implements ICompany {
 
-	public Company(String names, String emailAddress,Integer numberOfEmployees) {
-		super(names, emailAddress);
+
+	public Company(String names, String emailAddress,Integer numberOfEmployees,Address adress) {
+		super(names, emailAddress,adress);
 	    this.numberOfEmployees = numberOfEmployees;	
 	}
 

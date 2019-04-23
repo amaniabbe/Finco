@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public interface IAccount {
 
 	double getBalance();
@@ -17,5 +19,13 @@ public interface IAccount {
 	void notifyObservers();
 
 	boolean deleteAccount();
+	
+	void addInterest();
+	
+	String getAccountNumber();
+	
+	List<IEntry> entries();
+	
+	void setInterest(double percentage);
 
 }
