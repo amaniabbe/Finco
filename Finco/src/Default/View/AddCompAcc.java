@@ -21,10 +21,10 @@ public class AddCompAcc extends javax.swing.JDialog
 		// parse  your Java file into its visual envirenment. 
 		//{{ INIT_CONTROLS 
 		setTitle("Add company account");
-		setModal(true);
+//		setModal(true);
+
 		getContentPane().setLayout(null);
-//		setSize(400,400);
-//		pack() ;
+
 		setVisible(false);
 //		JRadioButton_Chk.setText("Checkings");
 //		JRadioButton_Chk.setActionCommand("Checkings");
@@ -91,7 +91,6 @@ public class AddCompAcc extends javax.swing.JDialog
 		getContentPane().add(JButton_Calcel);
 		JButton_Calcel.setBounds(156,290,84,24);
 
-		setSize(600,600);
 		//}}
 	
 		//{{REGISTER_LISTENERS

@@ -220,7 +220,8 @@ public class DefaultMainView extends javax.swing.JFrame {
 		 */
 
 		addPerAcc pac = new addPerAcc(myframe);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
+//		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
 		if (newaccount) {
@@ -239,7 +240,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		 */
 
 		AddCompAcc pac = new AddCompAcc(myframe);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
 		pac.show();
 
 		if (newaccount) {
