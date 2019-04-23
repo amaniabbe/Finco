@@ -57,7 +57,7 @@ public class Withdraw extends javax.swing.JDialog {
 	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
 	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
 	javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_AMT = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_AMT = new javax.swing.JTextField();
 	javax.swing.JButton JButton_OK = new javax.swing.JButton();
 	javax.swing.JButton JButton_Calcel = new javax.swing.JButton();
 
@@ -71,7 +71,7 @@ public class Withdraw extends javax.swing.JDialog {
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
 		parentframe.amountDeposit = JTextField_AMT.getText();
 		double amount = Double.parseDouble(parentframe.amountDeposit);
 		parentframe.finco.withdraw(accnr, amount,parentframe.accountType);
