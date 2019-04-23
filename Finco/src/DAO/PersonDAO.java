@@ -23,6 +23,7 @@ public class PersonDAO implements IPersonDAO{
 	
 	public PersonDAO() {
 		this.persons = new ArrayList<>();
+		this.init();
 		
 	}
 	

@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDAO implements IAccountDAO{
@@ -20,14 +21,19 @@ public class AccountDAO implements IAccountDAO{
 		this.accounts = accounts;
 		this.init();
 	}
-
-
+	
+    public AccountDAO() {
+		
+		this.accounts = new ArrayList<>();
+		this.init();
+	}
+	
 	void init() {	
 		String sql = "CREATE TABLE IF NOT EXISTS account (\n"
-                	 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                     + "	accountnumber text NOT NULL,\n"
-                     + "	balance float ,\n"
-                     + " owner"
+                	 + "id integer PRIMARY KEY AUTOINCREMENT,\n"
+                     + "accountnumber text NOT NULL,\n"
+                     + "balance float ,\n"
+                     + "owner text"
                      + ");";		
 		
 			try (Connection conn = DriverManager.getConnection(url);

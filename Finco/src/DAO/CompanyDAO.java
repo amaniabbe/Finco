@@ -5,68 +5,69 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import model.*;
+import model.ICompany;
 
-public class EntryDAO implements IEntryDAO{
+public class CompanyDAO  implements ICompanyDAO{
+
 	
-	List<IEntry> entries;
+	
+	private List<ICompany> companies ;
 	String url = "jdbc:sqlite:finco/src/Storage/FincoDatabase.db";
 	
+	public CompanyDAO(List<ICompany> customers) {
 	
-	public EntryDAO(List<IEntry> entries) {
-		this.entries = entries;
-		this.init();
+		this.companies = customers;
 	}
 	
-	public EntryDAO() {
-		this.entries = new ArrayList<>();
-	    this.init();
-	}
-	
-	void init() {
+	public CompanyDAO() {
+		this.companies = new ArrayList<>();
+		init();
 		
-		String sql = "CREATE TABLE IF NOT EXISTS entry (\n"
+	}
+	
+	void init() {	
+		String sql = "CREATE TABLE IF NOT EXISTS company (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
-                + "	description text\n"
+                + "	noofemployess int\n"
                 + ");";
                 
-		
-		
+		try {
 			try (Connection conn = DriverManager.getConnection(url);
 	                Statement stmt = conn.createStatement()) {
 	            // create a new table
 				stmt.execute(sql);
-				
+							            
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
 			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
-
+	
 	@Override
-	public List<IEntry> getAllcustomers() {
-		
-		String sql = "SELECT * FROM entry;";
+	public List<ICompany> getAllcustomers() {
+		String sql = "SELECT * FROM company;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
             // get all values a new table
 			ResultSet rs = stmt.executeQuery(sql);
-			//insert all table data to list
+			//insert all table data to companies list
 			
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-		
-		return entries;
+		return companies;
 	}
 
 	@Override
-	public boolean updateCustomer(IEntry costomer) {
+	public boolean updateCustomer(ICompany costomer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -78,8 +79,9 @@ public class EntryDAO implements IEntryDAO{
 	}
 
 	@Override
-	public boolean addCustomer(IEntry customer) {
+	public boolean addCustomer(ICompany customer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }
