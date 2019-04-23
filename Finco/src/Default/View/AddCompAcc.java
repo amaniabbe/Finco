@@ -20,11 +20,11 @@ public class AddCompAcc extends javax.swing.JDialog
 		// what Visual Cafe can generate, or Visual Cafe may be unable to back
 		// parse  your Java file into its visual envirenment. 
 		//{{ INIT_CONTROLS 
-		setTitle("Add compamy account");
+		setTitle("Add company account");
 		setModal(true);
 		getContentPane().setLayout(null);
-		pack() ;
-		setSize(298,380);
+//		setSize(400,400);
+//		pack() ;
 		setVisible(false);
 		JRadioButton_Chk.setText("Checkings");
 		JRadioButton_Chk.setActionCommand("Checkings");
@@ -86,11 +86,12 @@ public class AddCompAcc extends javax.swing.JDialog
 		JButton_OK.setActionCommand("OK");
 		getContentPane().add(JButton_OK);
 		JButton_OK.setBounds(48,290,84,24);
-		JButton_Calcel.setText("Cancel");
+		JButton_Calcel.setText("Cancel sdfsdf");
 		JButton_Calcel.setActionCommand("Cancel");
 		getContentPane().add(JButton_Calcel);
 		JButton_Calcel.setBounds(156,290,84,24);
 
+		setSize(600,600);
 		//}}
 	
 		//{{REGISTER_LISTENERS
