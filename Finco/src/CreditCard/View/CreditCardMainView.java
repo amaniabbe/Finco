@@ -41,7 +41,7 @@ public class CreditCardMainView extends DefaultMainView {
 	protected void JButtonPerAC_actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
 		addCreditCard pac = new addCreditCard(this);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
 		pac.show();
 //
 		if (newaccount) {
