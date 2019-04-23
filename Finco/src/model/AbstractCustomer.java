@@ -43,7 +43,7 @@ public abstract class AbstractCustomer implements ICustomer {
 	}
 
 	
-	
+	@Override
 	public String getNames() {
 		return names;
 	}

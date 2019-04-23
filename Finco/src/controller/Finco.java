@@ -14,37 +14,6 @@ public class Finco {
 	private List<ICustomer> customers = new ArrayList<>();
 
 	public static void main(String args[]) {
-		
-		Finco f = new Finco();
-		Address a = new Address();
-		a.setCity("KIGALI");
-		a.setState("RWANDA");
-		a.setStreet("KN123");
-		a.setZipCode("52775");
-
-		f.createPerson(a, "IRADUKUNDA", "jadoiradukunda");
-
-		f.createCompany(a, "AUCA", "info@auca.edu", 100);
-
-		ICustomer c = f.findCustomer("IRADUKUNDA");
-
-		ICustomer co = f.findCustomer("AUCA");
-
-		f.addAccount(c, "1234");
-
-		f.depositAmountPersonal("1234", 140000);
-
-		f.withDrwalPersonal("1234", 10000);
-
-		f.addAccount(co, "12345");
-
-		f.depositAmountCompany("12345", 14);
-
-		f.withDrwalCompany("12345", 10);
-		
-		f.addInterest();
-
-		f.details();
 
 	}
 
@@ -60,13 +29,13 @@ public class Finco {
 		customers.add(customer);
 	}
 
-	public void addPersonalAccount(ICustomer customer, String accountNumber) {
+	public void addCompanyAccount(ICustomer customer, String accountNumber) {
 		AccountFactory.getFactory();
 		IAccount account = AccountFactory.createAccount(customer, accountNumber);
 		customer.addAccount(account);
 	}
 
-	public void addAccount(ICustomer customer, String accountNumber) {
+	public void addPersonalAccount(ICustomer customer, String accountNumber) {
 		AccountFactory.getFactory();
 		IAccount account = AccountFactory.createAccount(customer, accountNumber);
 		customer.addAccount(account);
@@ -121,14 +90,16 @@ public class Finco {
 		}
 		return "Unknown Account";
 	}
-	
+
 	public String withDrwalPersonal(String accountNumber, double amount) {
 		IAccount account = findAccount(accountNumber);
 		if (account != null) {
 			IEntry entry = new Entry(new Date(), "Withdraw made", amount);
 			account.withdraw(amount);
 			account.addEntry(entry);
-			if(account.getBalance() < 0) {account.getOwner().sendEMail();}
+			if (account.getBalance() < 0) {
+				account.getOwner().sendEMail();
+			}
 			return "Amount is successfully withdrawen on account for  :" + account.getOwner().getNames();
 		}
 		return "Unknown Account";
@@ -138,19 +109,8 @@ public class Finco {
 		customers.stream().flatMap(x -> x.getListOfAccounts().stream()).forEach(IAccount::addInterest);
 	}
 
-	public void details() {
-		for (ICustomer c : customers) {
-			System.out.println(c.getNames() + " " + c.getAddress());
-			for (IAccount a : c.getListOfAccounts()) {
-				System.out.println(a.getAccountNumber() + " " + a.getBalance());
-				System.out.println("___________________________");
-				for (IEntry e : a.entries()) {
-					System.out.println(e.getDate() + " " + e.getDescription() + e.amount());
-				}
-				System.out.println("____________________________");
-
-			}
-		}
+	public List<ICustomer> getCustomers(){
+		return customers;
 	}
 
 }

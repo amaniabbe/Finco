@@ -25,5 +25,7 @@ public interface IAccount {
 	String getAccountNumber();
 	
 	List<IEntry> entries();
+	
+	void setInterest(double percentage);
 
 }

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractAccount implements IAccount {
+public  class AbstractAccount implements IAccount {
 
 	protected String accountNumber;
 
@@ -11,7 +11,7 @@ public abstract class AbstractAccount implements IAccount {
 
 	protected ICustomer owner;
 
-	protected double interest = 0.01;
+	protected double interest;
 
 	protected List<IEntry> entries = new ArrayList<>();
 
@@ -78,6 +78,11 @@ public abstract class AbstractAccount implements IAccount {
 	@Override
 	public List<IEntry> entries() {
 		return entries;
+	}
+
+	@Override
+	public void setInterest(double percentage) {
+		this.interest = percentage;
 	}
 
 }
