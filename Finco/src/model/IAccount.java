@@ -6,7 +6,9 @@ public interface IAccount {
 
 	boolean addEntry(IEntry entry);
 
-	boolean depositMoney();
+	boolean depositMoney(double amount);
+	
+	boolean withdraw(double amount);
 
 	boolean addOwner(ICustomer customer);
 

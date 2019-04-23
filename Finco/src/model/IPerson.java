@@ -1,5 +1,10 @@
 package model;
 
-public interface IPerson {
+import java.util.*;
+
+public interface IPerson extends ICustomer{
+	
+	
+	Date getDateofBirth();
 
 }
