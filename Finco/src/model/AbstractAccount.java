@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class AbstractAccount implements IAccount {
+public abstract class AbstractAccount implements IAccount {
 
 	protected String accountNumber;
 
@@ -84,6 +84,12 @@ public  class AbstractAccount implements IAccount {
 	@Override
 	public void setInterest(double percentage) {
 		this.interest = percentage;
+	}
+
+	@Override
+	public void setBalance(double balance) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
