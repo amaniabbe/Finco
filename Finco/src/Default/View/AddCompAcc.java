@@ -20,19 +20,20 @@ public class AddCompAcc extends javax.swing.JDialog
 		// what Visual Cafe can generate, or Visual Cafe may be unable to back
 		// parse  your Java file into its visual envirenment. 
 		//{{ INIT_CONTROLS 
-		setTitle("Add compamy account");
+		setTitle("Add company account");
 		setModal(true);
 		getContentPane().setLayout(null);
-		setSize(298,339);
+//		setSize(400,400);
+//		pack() ;
 		setVisible(false);
-		JRadioButton_Chk.setText("Checkings");
-		JRadioButton_Chk.setActionCommand("Checkings");
-		getContentPane().add(JRadioButton_Chk);
-		JRadioButton_Chk.setBounds(36,12,84,24);
-		JRadioButton_Sav.setText("Savings");
-		JRadioButton_Sav.setActionCommand("Savings");
-		getContentPane().add(JRadioButton_Sav);
-		JRadioButton_Sav.setBounds(36,36,84,24);
+//		JRadioButton_Chk.setText("Checkings");
+//		JRadioButton_Chk.setActionCommand("Checkings");
+//		getContentPane().add(JRadioButton_Chk);
+//		JRadioButton_Chk.setBounds(36,12,84,24);
+//		JRadioButton_Sav.setText("Savings");
+//		JRadioButton_Sav.setActionCommand("Savings");
+//		getContentPane().add(JRadioButton_Sav);
+//		JRadioButton_Sav.setBounds(36,36,84,24);
 		JLabel1.setText("Name");
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(java.awt.Color.black);
@@ -61,6 +62,12 @@ public class AddCompAcc extends javax.swing.JDialog
 		getContentPane().add(JLabel7);
 		JLabel7.setForeground(java.awt.Color.black);
 		JLabel7.setBounds(12,240,48,24);
+		JLabel8.setText("Acc Nr");
+		getContentPane().add(JTextField_ACNR);
+		JTextField_ACNR.setBounds(120,264,156,20);
+		getContentPane().add(JLabel8);
+		JLabel8.setForeground(java.awt.Color.black);
+		JLabel8.setBounds(12,264,48,24);
 		getContentPane().add(JTextField_NAME);
 		JTextField_NAME.setBounds(120,96,156,20);
 		getContentPane().add(JTextField_CT);
@@ -78,17 +85,13 @@ public class AddCompAcc extends javax.swing.JDialog
 		JButton_OK.setText("OK");
 		JButton_OK.setActionCommand("OK");
 		getContentPane().add(JButton_OK);
-		JButton_OK.setBounds(48,276,84,24);
+		JButton_OK.setBounds(48,290,84,24);
 		JButton_Calcel.setText("Cancel");
 		JButton_Calcel.setActionCommand("Cancel");
 		getContentPane().add(JButton_Calcel);
-		JButton_Calcel.setBounds(156,276,84,24);
-		JLabel8.setText("Acc Nr");
-		getContentPane().add(JLabel8);
-		JLabel8.setForeground(java.awt.Color.black);
-		JLabel8.setBounds(12,72,48,24);
-		getContentPane().add(JTextField_ACNR);
-		JTextField_ACNR.setBounds(120,72,156,20);
+		JButton_Calcel.setBounds(156,290,84,24);
+
+		setSize(600,600);
 		//}}
 	
 		//{{REGISTER_LISTENERS
@@ -99,31 +102,37 @@ public class AddCompAcc extends javax.swing.JDialog
 	}
 
 
+	protected void setViews() {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+
 	//{{DECLARE_CONTROLS
-	javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
-	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
-	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel4 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel5 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel6 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel7 = new javax.swing.JLabel();
-	javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_CT = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_STR = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_ZIP = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_NoOfEmp = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_EM = new javax.swing.JTextField();
-	javax.swing.JButton JButton_OK = new javax.swing.JButton();
-	javax.swing.JButton JButton_Calcel = new javax.swing.JButton();
-	javax.swing.JLabel JLabel8 = new javax.swing.JLabel();
-	javax.swing.JTextField JTextField_ACNR = new javax.swing.JTextField();
+
+	protected javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel4 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel5 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel6 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel7 = new javax.swing.JLabel();
+	protected javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_CT = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_STR = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_ZIP = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_NoOfEmp = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_EM = new javax.swing.JTextField();
+	protected javax.swing.JButton JButton_OK = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_Calcel = new javax.swing.JButton();
+	protected javax.swing.JLabel JLabel8 = new javax.swing.JLabel();
+	protected javax.swing.JTextField JTextField_ACNR = new javax.swing.JTextField();
 	//}}
 
 
-	class SymAction implements java.awt.event.ActionListener
+	public class SymAction implements java.awt.event.ActionListener
 	{
 		public void actionPerformed(java.awt.event.ActionEvent event)
 		{
@@ -135,7 +144,7 @@ public class AddCompAcc extends javax.swing.JDialog
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();
@@ -143,10 +152,7 @@ public class AddCompAcc extends javax.swing.JDialog
        parentframe.city=JTextField_CT.getText();
        parentframe.zip=JTextField_ZIP.getText();
        parentframe.state=JTextField_ST.getText();
-       if (JRadioButton_Chk.isSelected())
-           parentframe.accountType="Ch";
-           else
-           parentframe.accountType="S";
+
 	   parentframe.newaccount=true;
 	   dispose();
 			 
