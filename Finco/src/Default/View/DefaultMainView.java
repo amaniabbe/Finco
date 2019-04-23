@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import Default.View.DefaultMainView.SymAction;
+import controller.Finco;
 
 import javax.swing.*;
 
@@ -20,13 +21,14 @@ public class DefaultMainView extends javax.swing.JFrame {
 	/****
 	 * init variables in the object
 	 ****/
-	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit;
+	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit,email;
 	boolean newaccount;
 	protected DefaultTableModel model;
 	protected JTable JTable1;
 	private JScrollPane JScrollPane1;
 	DefaultMainView myframe;
 	protected Object rowdata[];
+	protected Finco finco;
 
 	public DefaultMainView() {
 		myframe = this;
@@ -36,9 +38,13 @@ public class DefaultMainView extends javax.swing.JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setSize(575, 310);
 		setVisible(false);
+		finco = new Finco();
 		JPanel1.setLayout(null);
 		getContentPane().add(BorderLayout.CENTER, JPanel1);
-		JPanel1.setBounds(0, 0, 575, 310);
+
+		JPanel1.setBounds(0,0,575,310);
+		this.setLocationRelativeTo(null);
+
 		/*
 		 * /Add five buttons on the pane /for Adding personal account, Adding company
 		 * account /Deposit, Withdraw and Exit from the system
@@ -223,6 +229,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
+
 		if (newaccount) {
 			// add row to table
 			rowdata[0] = accountnr;
@@ -234,6 +241,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	}
 
 	protected void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event) {
+
 		/*
 		 * construct a JDialog_AddCompAcc type object set the boundaries and show it
 		 */
@@ -247,7 +255,8 @@ public class DefaultMainView extends javax.swing.JFrame {
 			rowdata[0] = accountnr;
 			rowdata[1] = clientName;
 			rowdata[2] = city;
-			rowdata[3] = "P";
+
+			rowdata[3] = "C";
 			model.addRow(rowdata);
 			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
 			newaccount = false;

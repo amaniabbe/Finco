@@ -8,6 +8,6 @@ public interface IEntryDAO{
 	List<IEntry> getAllcustomers();
 	boolean updateCustomer(IEntry costomer);
 	boolean deleteCustomer(String name);
-	boolean addCustomer(IEntry customer);
+	boolean addEntry(IEntry entry);
 
 }

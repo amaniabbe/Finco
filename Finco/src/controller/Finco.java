@@ -33,6 +33,7 @@ public class Finco {
 		AccountFactory.getFactory();
 		IAccount account = AccountFactory.createAccount(customer, accountNumber);
 		customer.addAccount(account);
+		System.out.println("the current list is :" + customers.size());
 	}
 
 	public void addPersonalAccount(ICustomer customer, String accountNumber) {
@@ -109,8 +110,10 @@ public class Finco {
 		customers.stream().flatMap(x -> x.getListOfAccounts().stream()).forEach(IAccount::addInterest);
 	}
 
-	public List<ICustomer> getCustomers(){
+	public List<ICustomer> getCustomers() {
 		return customers;
 	}
+	
+	
 
 }

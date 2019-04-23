@@ -4,6 +4,7 @@ import model.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -92,8 +93,27 @@ public class AccountDAO implements IAccountDAO{
 
 
 	@Override
-	public boolean addCustomer(IAccount customer) {
-		// TODO Auto-generated method stub
+	public boolean addAccount(IAccount account) {
+		String sql = "INSERT INTO account("
+                + "accountnumber,"
+                + "balance,"
+                + "owner )"
+			    +  "VALUES(?,?,?)";
+		try ( Connection conn = DriverManager.getConnection(url)) {
+				
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		    // Set the values
+			pstmt.setString(1, account.getAccountNumber());
+			pstmt.setDouble(2, account.getBalance());
+			pstmt.setString(3, account.getOwner().getNames());
+		    
+		    // Insert 
+		    pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 		return false;
 	}
 	

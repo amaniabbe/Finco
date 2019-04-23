@@ -4,6 +4,7 @@ package DAO;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -118,7 +119,34 @@ public class PersonDAO implements IPersonDAO{
 
 	@Override
 	public boolean addCustomer(IPerson customer) {
-		persons.add(customer);
+		String sql = "INSERT INTO person("
+				+ "	name,"
+                + "	dateofbirth,"
+                + "	email,"
+                + "	state,"
+                + "	city,"
+                + "	street,"
+                + "	zipcode) "
+			    +  "VALUES(?,?,?,?,?,?,?)";
+		try ( Connection conn = DriverManager.getConnection(url)) {
+				
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		    // Set the values
+		    pstmt.setString(1, customer.getNames());
+		    pstmt.setString(2, customer.getDateofBirth().toString());
+		    pstmt.setString(3, customer.getEMail());	    
+		    pstmt.setString(4, customer.getAddress().getState());
+		    pstmt.setString(5, customer.getAddress().getCity());
+		    pstmt.setString(6, customer.getAddress().getStreet());
+		    pstmt.setString(7, customer.getAddress().getZipCode());
+		    
+		    // Insert 
+		    pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 		return true;
 	}
 

@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,8 +34,8 @@ public class EntryDAO implements IEntryDAO{
 		
 		String sql = "CREATE TABLE IF NOT EXISTS entry (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
-                + "	name text NOT NULL,\n"
                 + " amount DOUBLE,\n"
+                + " accountnumber DOUBLE,\n"
                 + "	description text\n"
                 + " date text, \n"
                 + ");";
@@ -59,6 +60,7 @@ public class EntryDAO implements IEntryDAO{
 		IEntry entry;
 		String name;
 		double amount;
+		String accountnumber;
 		String description;
 		String date;
 		
@@ -71,10 +73,10 @@ public class EntryDAO implements IEntryDAO{
 			//insert all table data to list
 			
 			while(rs.next()) {
-				name = rs.getString("name");
 				amount = rs.getDouble("amount");
 				description = rs.getString("description");
 				date = rs.getString("date");
+				accountnumber = rs.getString("accountnumber");
 			    Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 				entry = new Entry(date1, description, amount);
 				entries.add(entry);
@@ -103,8 +105,27 @@ public class EntryDAO implements IEntryDAO{
 	}
 
 	@Override
-	public boolean addCustomer(IEntry customer) {
-		// TODO Auto-generated method stub
+	public boolean addEntry(IEntry entry) {
+		String sql = "INSERT INTO entry("
+                + " amount,"
+                + "	description,"
+                + " date) "
+			    +  "VALUES(?,?,?,?)";
+		try ( Connection conn = DriverManager.getConnection(url)) {
+				
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		    // Set the values
+			pstmt.setDouble(1, entry.amount());
+			pstmt.setString(2, entry.getDescription());
+			pstmt.setString(3, entry.getDate().toString());
+		    
+		    // Insert 
+		    pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 		return false;
 	}
 }

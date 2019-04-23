@@ -7,8 +7,8 @@ import model.IAccount;
 public interface IAccountDAO {
 	
 	List<IAccount> getAllcustomers();
-	boolean updateCustomer(IAccount costomer);
+	boolean updateCustomer(IAccount account);
 	boolean deleteCustomer(String name);
-	boolean addCustomer(IAccount customer);
+	boolean addAccount(IAccount account);
 
 }

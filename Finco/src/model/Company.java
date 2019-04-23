@@ -1,4 +1,4 @@
-package model;
+ package model;
 
 public class Company extends AbstractCustomer implements ICompany {
 

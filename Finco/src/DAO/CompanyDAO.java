@@ -122,7 +122,7 @@ public class CompanyDAO  implements ICompanyDAO{
                 + "	state,"
                 + "	city,"
                 + "	street,"
-                + "	zipcode "
+                + "	zipcode) "
 			    +  "VALUES(?,?,?,?,?,?,?)";
 		try ( Connection conn = DriverManager.getConnection(url)) {
 				
@@ -130,6 +130,13 @@ public class CompanyDAO  implements ICompanyDAO{
 
 		    // Set the values
 		    pstmt.setString(1, customer.getNames());
+		    pstmt.setString(2, customer.getEMail());
+		    pstmt.setInt(3, customer.getNumberOfEmployees());
+		    pstmt.setString(4, customer.getAddress().getState());
+		    pstmt.setString(5, customer.getAddress().getCity());
+		    pstmt.setString(6, customer.getAddress().getStreet());
+		    pstmt.setString(7, customer.getAddress().getZipCode());
+		    
 		    
 
 		    // Insert 
