@@ -9,6 +9,18 @@ public class Address {
 	private String street;
 	
 	private String zipCode;
+	
+	
+	
+
+	public Address(String state, String city, String street, String zipCode) {
+		this.state = state;
+		this.city = city;
+		this.street = street;
+		this.zipCode = zipCode;
+	}
+	
+	public Address() {}
 
 	public String getState() {
 		return state;
