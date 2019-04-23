@@ -76,10 +76,11 @@ public class Deposit extends javax.swing.JDialog {
 	}
 
 	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
-		parentframe.amountDeposit = JTextField_Deposit.getText();
+		/*parentframe.amountDeposit = JTextField_Deposit.getText();
 		double amount = Double.parseDouble(parentframe.amountDeposit);
 		parentframe.finco.deposit(accnr, amount, parentframe.accountType);
-		parentframe.reload();
+		parentframe.reload();*/
+		System.out.println("Super");
 		dispose();
 	}
 

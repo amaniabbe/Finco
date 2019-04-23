@@ -6,6 +6,7 @@ import Default.View.Deposit;
 public class BankDeposite extends Deposit {
 
 	private BankMainView parent;
+	//test
 
 	public BankDeposite(BankMainView parent, String aaccnr) {
 		super(parent, aaccnr);
@@ -15,11 +16,12 @@ public class BankDeposite extends Deposit {
 
 	@Override
 	protected void JButtonOK_actionPerformed(ActionEvent event) {
-		parent.amount = JTextField_Deposit.getText();
+		/*parent.amount = JTextField_Deposit.getText();
 		System.out.println("amount"+(double)parent.amount);
 		parent.main.deposit(accnr, (double) parent.amount, parent.accountType);
 		System.out.println("trio version");
-		parent.reload();
+		parent.reload();*/
+		System.out.println("Sub");
 		
 	}
 
