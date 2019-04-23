@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Default.View.DefaultMainView.SymAction;
 import controller.Finco;
+import model.IAccount;
+import model.ICustomer;
 
 import javax.swing.*;
 
@@ -21,7 +23,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	/****
 	 * init variables in the object
 	 ****/
-	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit,email;
+	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit, email;
 	boolean newaccount;
 	protected DefaultTableModel model;
 	protected JTable JTable1;
@@ -42,7 +44,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		JPanel1.setLayout(null);
 		getContentPane().add(BorderLayout.CENTER, JPanel1);
 
-		JPanel1.setBounds(0,0,575,310);
+		JPanel1.setBounds(0, 0, 575, 310);
 		this.setLocationRelativeTo(null);
 
 		/*
@@ -92,6 +94,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
 		addVODButtons(lSymAction);
+		refresh();
 
 	}
 
@@ -138,17 +141,33 @@ public class DefaultMainView extends javax.swing.JFrame {
 
 	public void setJScrollPane(java.util.List<String> list) {
 		model = new DefaultTableModel();
+
 		JTable1 = new JTable(model);
 		for (String s : list) {
 			model.addColumn(s);
 		}
+
 		rowdata = new Object[list.size()];
+		refresh();
 		newaccount = false;
 
 		JPanel1.add(JScrollPane1);
 		JScrollPane1.setBounds(12, 92, 444, 160);
 		JScrollPane1.getViewport().add(JTable1);
 		JTable1.setBounds(0, 0, 420, 0);
+	}
+
+	public void refresh() {
+		model.setRowCount(0);
+		for (ICustomer c : finco.getCustomers()) {
+			for (IAccount a : c.getListOfAccounts()) {
+				rowdata[0] = a.getAccountNumber();
+				rowdata[1] = c.getNames();
+				rowdata[2] = c.getAddress().getCity();
+				rowdata[3] = c.getClass().getSimpleName();
+				model.addRow(rowdata);
+			}
+		}
 	}
 
 	public void addRow(Object rowdata[]) {
@@ -229,15 +248,11 @@ public class DefaultMainView extends javax.swing.JFrame {
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
-
-		if (newaccount) {
-			// add row to table
-			rowdata[0] = accountnr;
-			rowdata[1] = clientName;
-			rowdata[2] = city;
-			rowdata[3] = "P";
-			addRow(rowdata);
-		}
+		/*
+		 * if (newaccount) { // add row to table rowdata[0] = accountnr; rowdata[1] =
+		 * clientName; rowdata[2] = city; rowdata[3] = "P"; addRow(rowdata); }
+		 */
+		refresh();
 	}
 
 	protected void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event) {
@@ -250,17 +265,15 @@ public class DefaultMainView extends javax.swing.JFrame {
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
-		if (newaccount) {
-			// add row to table
-			rowdata[0] = accountnr;
-			rowdata[1] = clientName;
-			rowdata[2] = city;
-
-			rowdata[3] = "C";
-			model.addRow(rowdata);
-			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
-			newaccount = false;
-		}
+		/*
+		 * if (newaccount) { // add row to table rowdata[0] = accountnr; rowdata[1] =
+		 * clientName; rowdata[2] = city;
+		 * 
+		 * rowdata[3] = "C"; model.addRow(rowdata);
+		 * JTable1.getSelectionModel().setAnchorSelectionIndex(-1); newaccount = false;
+		 * }
+		 */
+		refresh();
 
 	}
 
@@ -316,6 +329,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event) {
 		JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts",
 				"Add interest to all accounts", JOptionPane.WARNING_MESSAGE);
+		finco.addInterest();
 
 	}
 }

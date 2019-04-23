@@ -108,6 +108,7 @@ public class Finco {
 
 	public void addInterest() {
 		customers.stream().flatMap(x -> x.getListOfAccounts().stream()).forEach(IAccount::addInterest);
+		System.out.println("Added interest on all accounts ");
 	}
 
 	public List<ICustomer> getCustomers() {

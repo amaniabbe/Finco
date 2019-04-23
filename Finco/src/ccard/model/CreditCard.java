@@ -14,7 +14,7 @@ public class CreditCard extends Account {
 	private double minimumPayment;
 
 	public CreditCard(ICustomer customer, String accountNumber) {
-		super(customer, accountNumber);
+		super(customer, accountNumber,0.0);
 
 	}
 
