@@ -15,14 +15,6 @@ public class addPerAcc extends AddCompAcc {
 		super(parent);
 		this.parent = parent;
 		setTitle("add personal Account");
-		JRadioButton_Chk.setText("Checkings");
-		JRadioButton_Chk.setActionCommand("Checkings");
-		getContentPane().add(JRadioButton_Chk);
-		JRadioButton_Chk.setBounds(36, 12, 84, 24);
-		JRadioButton_Sav.setText("Savings");
-		JRadioButton_Sav.setActionCommand("Savings");
-		getContentPane().add(JRadioButton_Sav);
-		JRadioButton_Sav.setBounds(36, 36, 84, 24);
 		JLabel8.setVisible(false);
 		JTextField_ACNR.setVisible(false);
 
@@ -37,10 +29,6 @@ public class addPerAcc extends AddCompAcc {
 		parent.city = JTextField_CT.getText();
 		parent.zip = JTextField_ZIP.getText();
 		parent.state = JTextField_ST.getText();
-		if (JRadioButton_Chk.isSelected())
-			parent.accountType = "Ch";
-		else
-			parent.accountType = "S";
 		parent.newaccount = true;
 		dispose();
 	}

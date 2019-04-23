@@ -10,6 +10,8 @@ import Default.View.AddCompAcc.SymAction;
 public class AddCompanyAccView extends AddCompAcc {
 
 	BankMainView parent;
+	protected javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
+	protected javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
 
 	public AddCompanyAccView(BankMainView parent) {
 		super(parent);
