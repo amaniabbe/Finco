@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.*;
 
@@ -31,7 +34,9 @@ public class EntryDAO implements IEntryDAO{
 		String sql = "CREATE TABLE IF NOT EXISTS entry (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
+                + " amount DOUBLE,\n"
                 + "	description text\n"
+                + " date text, \n"
                 + ");";
                 
 		
@@ -51,14 +56,34 @@ public class EntryDAO implements IEntryDAO{
 	@Override
 	public List<IEntry> getAllcustomers() {
 		
+		IEntry entry;
+		String name;
+		double amount;
+		String description;
+		String date;
+		
 		String sql = "SELECT * FROM entry;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
             // get all values a new table
+			
 			ResultSet rs = stmt.executeQuery(sql);
 			//insert all table data to list
 			
-        } catch (SQLException e) {
+			while(rs.next()) {
+				name = rs.getString("name");
+				amount = rs.getDouble("amount");
+				description = rs.getString("description");
+				date = rs.getString("date");
+			    Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+				entry = new Entry(date1, description, amount);
+				entries.add(entry);
+				
+				rs.next();
+			}
+			
+			
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 		

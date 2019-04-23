@@ -12,11 +12,11 @@ import java.util.List;
 
 public class AccountDAO implements IAccountDAO{
 	
-	List<Account> accounts;
+	List<IAccount> accounts;
 	String url = "jdbc:sqlite:finco/src/Storage/FincoDatabase.db";
 	
 	
-	public AccountDAO(List<Account> accounts) {
+	public AccountDAO(List<IAccount> accounts) {
 		
 		this.accounts = accounts;
 		this.init();
@@ -32,7 +32,7 @@ public class AccountDAO implements IAccountDAO{
 		String sql = "CREATE TABLE IF NOT EXISTS account (\n"
                 	 + "id integer PRIMARY KEY AUTOINCREMENT,\n"
                      + "accountnumber text NOT NULL,\n"
-                     + "balance float ,\n"
+                     + "balance double ,\n"
                      + "owner text"
                      + ");";		
 		
@@ -49,8 +49,31 @@ public class AccountDAO implements IAccountDAO{
 
 	@Override
 	public List<IAccount> getAllcustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM account;";
+		try (Connection conn = DriverManager.getConnection(url);
+                Statement stmt = conn.createStatement()) {
+            // get all values a new table
+			ResultSet rs = stmt.executeQuery(sql);
+			//insert all table data to companies list
+			
+			IAccount account;
+			String accountnumber;
+			Double balance;
+			String owner;
+			
+			while(!rs.next()) {
+				accountnumber = rs.getString("accountnumber");
+				owner = rs.getString("owner");
+				balance = rs.getDouble("balance");
+				
+				account = new Account(null, accountnumber);
+				accounts.add(account);				
+			}
+			
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+		return accounts;
 	}
 
 

@@ -9,7 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import model.Address;
+import model.Company;
+import model.ICompany;
 import model.IPerson;
+import model.Person;
 
 public class PersonDAO implements IPersonDAO{
 	
@@ -31,7 +35,12 @@ public class PersonDAO implements IPersonDAO{
 		String sql = "CREATE TABLE IF NOT EXISTS person (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
-                + "	dateofbirth text\n"
+                + "	dateofbirth text,\n"
+                + "	email text,\n"
+                + "	state text,\n"
+                + "	city text,\n"
+                + "	street text,\n"
+                + "	zipcode text\n"
                 + ");";
                 
 		try {
@@ -52,6 +61,44 @@ public class PersonDAO implements IPersonDAO{
 
 	@Override
 	public List<IPerson> getAllcustomers() {
+		
+		String sql = "SELECT * FROM person;";
+		try (Connection conn = DriverManager.getConnection(url);
+                Statement stmt = conn.createStatement()) {
+            // get all values a new table
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			//insert all table data to companies list
+			IPerson person;
+			String name;
+			String dateofbirth, state ,  city , street, zipcode;
+			String emailAddress;
+			Address address;
+			
+			while(!rs.next()) {
+				name = rs.getString("name");
+				emailAddress = rs.getString("email");
+				dateofbirth = rs.getString("dateofbirth");
+				state = rs.getString("state");
+				city = rs.getString("city");
+				street = rs.getString("street");
+				zipcode = rs.getString("zipcode");
+				address = new Address();
+				address.setCity(city);
+				address.setState(state);
+				address.setStreet(street);
+				address.setZipCode(zipcode);
+				
+				
+				person = new Person(name,emailAddress,address);
+				persons.add(person);
+				
+				
+			}
+			
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 		
 		return persons;
 	}

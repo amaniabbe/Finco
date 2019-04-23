@@ -14,6 +14,8 @@ public interface ICustomer {
 
 	List<IAccount> getListOfAccounts();
 	
-	ICustomer getCustomer(String name);
+	String getNames();
+	
+	Address getAddress();
 
 }
