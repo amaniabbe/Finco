@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.Address;
 import model.Company;
@@ -51,7 +54,7 @@ public class PersonDAO implements IPersonDAO{
 				stmt.execute(sql);
 							            
 	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
+	            System.out.println("person init: " + e.getMessage());
 	        }
 			
 		} catch (Exception e) {
@@ -76,7 +79,7 @@ public class PersonDAO implements IPersonDAO{
 			String emailAddress;
 			Address address;
 			
-			while(!rs.next()) {
+			while(rs.next()) {
 				name = rs.getString("name");
 				emailAddress = rs.getString("email");
 				dateofbirth = rs.getString("dateofbirth");
@@ -93,12 +96,11 @@ public class PersonDAO implements IPersonDAO{
 				
 				person = new Person(name,emailAddress,address);
 				persons.add(person);
-				
-				
+							
 			}
 			
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("person select: " +e.getMessage());
         }
 		
 		return persons;
@@ -134,7 +136,7 @@ public class PersonDAO implements IPersonDAO{
 
 		    // Set the values
 		    pstmt.setString(1, customer.getNames());
-		    pstmt.setString(2, customer.getDateofBirth().toString());
+		    pstmt.setString(2, new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		    pstmt.setString(3, customer.getEMail());	    
 		    pstmt.setString(4, customer.getAddress().getState());
 		    pstmt.setString(5, customer.getAddress().getCity());

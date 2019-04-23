@@ -43,7 +43,7 @@ public class AccountDAO implements IAccountDAO{
 				stmt.execute(sql);
 				
 	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
+	            System.out.println("account init: " + e.getMessage());
 	        }		
 	}
 
@@ -62,7 +62,7 @@ public class AccountDAO implements IAccountDAO{
 			Double balance;
 			String owner;
 			
-			while(!rs.next()) {
+			while(rs.next()) {
 				accountnumber = rs.getString("accountnumber");
 				owner = rs.getString("owner");
 				balance = rs.getDouble("balance");
@@ -74,7 +74,7 @@ public class AccountDAO implements IAccountDAO{
 			}
 			
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("account select: " +e.getMessage());
         }
 		return accounts;
 	}

@@ -39,7 +39,7 @@ public class CompanyDAO  implements ICompanyDAO{
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
                 + "	email text NOT NULL,\n"
-                + "	noofemployess int, \n"
+                + "	noofemployees int, \n"
                 + "	state text,\n"
                 + "	city text,\n"
                 + "	street text,\n"
@@ -52,7 +52,7 @@ public class CompanyDAO  implements ICompanyDAO{
 				stmt.execute(sql);
 							            
 	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
+	            System.out.println("company init: " + e.getMessage());
 	        }
 			
 		
@@ -74,7 +74,10 @@ public class CompanyDAO  implements ICompanyDAO{
 			String emailAddress,state ,  city , street, zipcode;
 			Address address;
 			
+			//rs.last();
+			
 			while(rs.next()) {
+				
 				name = rs.getString("name");
 				emailAddress = rs.getString("email");
 				numberofemployees = rs.getInt("noofemployees");
@@ -90,12 +93,11 @@ public class CompanyDAO  implements ICompanyDAO{
 				
 				company = new Company(name,emailAddress,numberofemployees,address);
 				companies.add(company);
-				
-				rs.next();
+								
 			}
 			
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("company select: " + e.getMessage());
         }
 		return companies;
 	}
@@ -118,7 +120,7 @@ public class CompanyDAO  implements ICompanyDAO{
 		String sql = "INSERT INTO company("
 				+ "	name,"
                 + "	email,"
-                + "	noofemployess,"
+                + "	noofemployees,"
                 + "	state,"
                 + "	city,"
                 + "	street,"
@@ -138,10 +140,10 @@ public class CompanyDAO  implements ICompanyDAO{
 		    pstmt.setString(7, customer.getAddress().getZipCode());
 		    
 		    
-
+		    	
 		    // Insert 
 		    pstmt.executeUpdate();
-
+		    
 		} catch (SQLException e) {
             System.out.println("addCompany: " +e.getMessage());
         }

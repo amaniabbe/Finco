@@ -35,9 +35,9 @@ public class EntryDAO implements IEntryDAO{
 		String sql = "CREATE TABLE IF NOT EXISTS entry (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " amount DOUBLE,\n"
-                + " accountnumber DOUBLE,\n"
-                + "	description text\n"
-                + " date text, \n"
+                + " accountnumber text,\n"
+                + "	description text,\n"
+                + " date text \n"
                 + ");";
                 
 		
@@ -48,7 +48,7 @@ public class EntryDAO implements IEntryDAO{
 				stmt.execute(sql);
 				
 	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
+	            System.out.println("entry init: " + e.getMessage());
 	        }
 			
 		
@@ -76,16 +76,18 @@ public class EntryDAO implements IEntryDAO{
 				description = rs.getString("description");
 				date = rs.getString("date");
 				accountnumber = rs.getString("accountnumber");
-			    Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+				//entry.getDate().toString()	Tue Apr 23 16:50:30 CDT 2019	
+
+			    Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(date);
 				entry = new Entry(date1, description, amount,accountnumber);
 				entries.add(entry);
-				
-				rs.next();
+
+			
 			}
 			
 			
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("entry select: " +e.getMessage());
         }
 		
 		return entries;
@@ -107,17 +109,22 @@ public class EntryDAO implements IEntryDAO{
 	public boolean addEntry(IEntry entry) {
 		String sql = "INSERT INTO entry("
                 + " amount,"
+                + " accountnumber,"
                 + "	description,"
                 + " date) "
 			    +  "VALUES(?,?,?,?)";
+
 		try ( Connection conn = DriverManager.getConnection(url)) {
 				
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-
+			//System.out.println("data is " + entry.accountNumber());
 		    // Set the values
 			pstmt.setDouble(1, entry.amount());
-			pstmt.setString(2, entry.getDescription());
-			pstmt.setString(3, entry.getDate().toString());
+			pstmt.setString(2, entry.accountNumber());
+			pstmt.setString(3, entry.getDescription());
+
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss") ;
+			pstmt.setString(4, f.format(entry.getDate()));
 		    
 		    // Insert 
 		    pstmt.executeUpdate();

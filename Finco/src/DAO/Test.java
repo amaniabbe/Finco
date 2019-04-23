@@ -28,20 +28,35 @@ public class Test {
 		IPerson p2 = new Person("person2", "Emain2", add2);
 		
 		IAccount a = new Account(c,"comp1 Acc # 1", 0);
+		a.addEntry(new Entry(new Date(), "desc", 100, a.getAccountNumber()));
 		c.addAccount(a);
+		
 		IAccount a1 = new Account(c2,"comp2 Acc # 1", 0);
+		a1.addEntry(new Entry(new Date(), "desc", 100, a1.getAccountNumber()));
 		c2.addAccount(a1);
+		
 		IAccount a2 = new Account(p,"pers1 Acc # 1", 0);
+		a2.addEntry(new Entry(new Date(), "desc", 100, a2.getAccountNumber()));
 		p.addAccount(a2);
-		IAccount a3 = new Account(p2,"c Acc # 1", 0);
+		
+		IAccount a3 = new Account(p2,"pers2 Acc # 1", 0);
+		a3.addEntry(new Entry(new Date(), "desc", 100, a3.getAccountNumber()));
 		p2.addAccount(a3);
+		
 		IAccount a4 = new Account(c,"comp1 Acc # 2", 0);
+		a4.addEntry(new Entry(new Date(), "desc", 100, a4.getAccountNumber()));
 		c.addAccount(a4);
+		
 		IAccount a5 = new Account(c2,"comp2 Acc # 2", 0);
-		c2.addAccount(a4);
+		a5.addEntry(new Entry(new Date(), "desc", 100, a5.getAccountNumber()));
+		c2.addAccount(a5);
+		
 		IAccount a6 = new Account(p,"pers1 Acc # 2", 0);
-		p.addAccount(a5);
-		IAccount a7 = new Account(p2,"pers Acc # 2", 0);
+		a6.addEntry(new Entry(new Date(), "desc", 100, a6.getAccountNumber()));
+		p.addAccount(a6);
+		
+		IAccount a7 = new Account(p2,"pers2 Acc # 2", 0);
+		a7.addEntry(new Entry(new Date(), "desc", 100, a7.getAccountNumber()));
 		p2.addAccount(a7);
 		
 		
@@ -57,7 +72,11 @@ public class Test {
 		
 		m.addCompanies(clist);
 		m.addPersons(plist);
+		// works fine until here
 		
+		clist = m.getListofCustomers();
+		plist = m.getListofPersons();
+
 		
 
 	}
