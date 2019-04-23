@@ -23,7 +23,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	/****
 	 * init variables in the object
 	 ****/
-	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit, email;
+	protected String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit, email;
 	boolean newaccount;
 	protected DefaultTableModel model;
 	protected JTable JTable1;

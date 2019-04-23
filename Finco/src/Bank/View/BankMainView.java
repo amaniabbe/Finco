@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import CreditCard.View.CreditDeposite;
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
+import Default.View.Deposit;
 import Default.View.Withdraw;
 
 public class BankMainView extends DefaultMainView {
@@ -43,20 +44,8 @@ public class BankMainView extends DefaultMainView {
 		AddPersonalAccView pac = new AddPersonalAccView(this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
-//
-		if (newaccount) {
-			// add row to table
-			rowdata[0] = street;
-			rowdata[1] = city;
-			rowdata[2] = state;
-			rowdata[3] = zip;
-			rowdata[4] = "P";
-			rowdata[5] = chS;
-			rowdata[6] = amount;
-			addRow(rowdata);
-
-//		}  
-		}
+		
+		refresh();
 	}
 
 	@Override
@@ -65,20 +54,9 @@ public class BankMainView extends DefaultMainView {
 		AddCompanyAccView pac = new AddCompanyAccView(this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
-//
-		if (newaccount) {
-			// add row to table
-			rowdata[0] = street;
-			rowdata[1] = city;
-			rowdata[2] = state;
-			rowdata[3] = zip;
-			rowdata[4] = "c";
-			rowdata[5] = chS;
-			rowdata[6] = amount;
-			addRow(rowdata);
+		
+		refresh();
 
-//		}  
-		}
 	}
 
 	@Override
@@ -87,20 +65,13 @@ public class BankMainView extends DefaultMainView {
 		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
 		if (selection >= 0) {
 			String accnr = (String) model.getValueAt(selection, 0);
+			accountType = (String) model.getValueAt(selection, 4);
 
 			// Show the dialog for adding deposit amount for the current mane
-			BankDeposite dep = new BankDeposite(this, accnr);
+			Deposit dep = new Deposit(this, accnr);
 			dep.setBounds(430, 15, 275, 140);
 			dep.show();
 
-			// compute new amount
-			if (amountDeposit != null) {
-				long deposit = Long.parseLong((String) amountDeposit);
-				String samount = (String) model.getValueAt(selection, 5);
-				long currentamount = Long.parseLong(samount);
-				long newamount = currentamount + deposit;
-				model.setValueAt(String.valueOf(newamount), selection, 5);
-			}
 		}
 
 	}
