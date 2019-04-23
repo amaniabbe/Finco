@@ -9,6 +9,7 @@ public class Entry implements IEntry {
 	private String description;
 
 	private double amount;
+
 	
 	
 	public Entry(Date recordedDate,String description,double amount) {

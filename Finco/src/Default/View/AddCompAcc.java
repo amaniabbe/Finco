@@ -23,7 +23,8 @@ public class AddCompAcc extends javax.swing.JDialog
 		setTitle("Add compamy account");
 		setModal(true);
 		getContentPane().setLayout(null);
-		setSize(298,339);
+		pack() ;
+		setSize(298,380);
 		setVisible(false);
 		JRadioButton_Chk.setText("Checkings");
 		JRadioButton_Chk.setActionCommand("Checkings");
@@ -61,6 +62,12 @@ public class AddCompAcc extends javax.swing.JDialog
 		getContentPane().add(JLabel7);
 		JLabel7.setForeground(java.awt.Color.black);
 		JLabel7.setBounds(12,240,48,24);
+		JLabel8.setText("Acc Nr");
+		getContentPane().add(JTextField_ACNR);
+		JTextField_ACNR.setBounds(120,264,156,20);
+		getContentPane().add(JLabel8);
+		JLabel8.setForeground(java.awt.Color.black);
+		JLabel8.setBounds(12,264,48,24);
 		getContentPane().add(JTextField_NAME);
 		JTextField_NAME.setBounds(120,96,156,20);
 		getContentPane().add(JTextField_CT);
@@ -78,17 +85,12 @@ public class AddCompAcc extends javax.swing.JDialog
 		JButton_OK.setText("OK");
 		JButton_OK.setActionCommand("OK");
 		getContentPane().add(JButton_OK);
-		JButton_OK.setBounds(48,276,84,24);
+		JButton_OK.setBounds(48,290,84,24);
 		JButton_Calcel.setText("Cancel");
 		JButton_Calcel.setActionCommand("Cancel");
 		getContentPane().add(JButton_Calcel);
-		JButton_Calcel.setBounds(156,276,84,24);
-		JLabel8.setText("Acc Nr");
-		getContentPane().add(JLabel8);
-		JLabel8.setForeground(java.awt.Color.black);
-		JLabel8.setBounds(12,72,48,24);
-		getContentPane().add(JTextField_ACNR);
-		JTextField_ACNR.setBounds(120,72,156,20);
+		JButton_Calcel.setBounds(156,290,84,24);
+
 		//}}
 	
 		//{{REGISTER_LISTENERS
@@ -99,31 +101,38 @@ public class AddCompAcc extends javax.swing.JDialog
 	}
 
 
+	protected void setViews() {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+
 	//{{DECLARE_CONTROLS
-	javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
-	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
-	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel4 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel5 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel6 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel7 = new javax.swing.JLabel();
-	javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_CT = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_STR = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_ZIP = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_NoOfEmp = new javax.swing.JTextField();
-	javax.swing.JTextField JTextField_EM = new javax.swing.JTextField();
-	javax.swing.JButton JButton_OK = new javax.swing.JButton();
-	javax.swing.JButton JButton_Calcel = new javax.swing.JButton();
-	javax.swing.JLabel JLabel8 = new javax.swing.JLabel();
-	javax.swing.JTextField JTextField_ACNR = new javax.swing.JTextField();
+	protected javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
+	protected javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
+	protected javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel4 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel5 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel6 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel7 = new javax.swing.JLabel();
+	protected javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_CT = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_STR = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_ZIP = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_NoOfEmp = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_EM = new javax.swing.JTextField();
+	protected javax.swing.JButton JButton_OK = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_Calcel = new javax.swing.JButton();
+	protected javax.swing.JLabel JLabel8 = new javax.swing.JLabel();
+	protected javax.swing.JTextField JTextField_ACNR = new javax.swing.JTextField();
 	//}}
 
 
-	class SymAction implements java.awt.event.ActionListener
+	public class SymAction implements java.awt.event.ActionListener
 	{
 		public void actionPerformed(java.awt.event.ActionEvent event)
 		{
@@ -135,7 +144,7 @@ public class AddCompAcc extends javax.swing.JDialog
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();

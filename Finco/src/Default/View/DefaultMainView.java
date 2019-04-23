@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
+
+import Default.View.DefaultMainView.SymAction;
+
 import javax.swing.*;
 
 /**
@@ -20,11 +23,11 @@ public class DefaultMainView extends javax.swing.JFrame
      ****/
     String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit;
     boolean newaccount;
-    private DefaultTableModel model;
-    private JTable JTable1;
+    protected DefaultTableModel model;
+    protected JTable JTable1;
     private JScrollPane JScrollPane1;
     DefaultMainView myframe;
-    private Object rowdata[];
+    protected Object rowdata[];
     
 	public DefaultMainView()
 	{
@@ -65,21 +68,13 @@ public class DefaultMainView extends javax.swing.JFrame
 		setJScrollPane(list);
 //        rowdata = new Object[8];
 		
-		JButton_PerAC.setText("Add personal account");
-		JPanel1.add(JButton_PerAC);
-		JButton_PerAC.setBounds(24,20,192,33);
-		JButton_CompAC.setText("Add company account");
-		JButton_CompAC.setActionCommand("jbutton");
-		JPanel1.add(JButton_CompAC);
-		JButton_CompAC.setBounds(240,20,192,33);
+
 		JButton_Deposit.setText("Deposit");
 		JPanel1.add(JButton_Deposit);
 		JButton_Deposit.setBounds(468,104,96,33);
 		JButton_Withdraw.setText("Withdraw");
 		JPanel1.add(JButton_Withdraw);
-		JButton_Addinterest.setBounds(448,20,106,33);
-		JButton_Addinterest.setText("Add interest");
-		JPanel1.add(JButton_Addinterest);
+		
 		JButton_Withdraw.setBounds(468,164,96,33);
 		JButton_Exit.setText("Exit");
 		JPanel1.add(JButton_Exit);
@@ -88,18 +83,34 @@ public class DefaultMainView extends javax.swing.JFrame
 		// lineBorder1.setLineColor(java.awt.Color.green);
 		//$$ lineBorder1.move(24,312);
 
-		JButton_PerAC.setActionCommand("jbutton");
 
 		SymWindow aSymWindow = new SymWindow();
 		this.addWindowListener(aSymWindow);
 		SymAction lSymAction = new SymAction();
 		JButton_Exit.addActionListener(lSymAction);
-		JButton_PerAC.addActionListener(lSymAction);
-		JButton_CompAC.addActionListener(lSymAction);
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
-		JButton_Addinterest.addActionListener(lSymAction);
+		addVODButtons(lSymAction);
 		
+	}
+	
+	public void addVODButtons(SymAction lSymAction) {
+		JButton_PerAC.setText("Add personal account");
+		JPanel1.add(JButton_PerAC);
+		JButton_PerAC.setBounds(24,20,192,33);
+		JButton_CompAC.setText("Add company account");
+		JButton_CompAC.setActionCommand("jbutton");
+		JButton_PerAC.setActionCommand("jbutton");
+		JPanel1.add(JButton_CompAC);
+		JButton_CompAC.setBounds(240,20,192,33);
+		JButton_Addinterest.setBounds(448,20,106,33);
+		JButton_Addinterest.setText("Add interest");
+		JPanel1.add(JButton_Addinterest);
+		JButton_PerAC.addActionListener(lSymAction);
+		JButton_CompAC.addActionListener(lSymAction);
+		JButton_Addinterest.addActionListener(lSymAction);
+
+
 	}
 
 	
@@ -136,23 +147,27 @@ public class DefaultMainView extends javax.swing.JFrame
         for (String s : list) {
 			model.addColumn(s);
 		}
-        rowdata = new Object[8];
+        rowdata = new Object[list.size()];
         newaccount=false;
-        
         
         JPanel1.add(JScrollPane1);
         JScrollPane1.setBounds(12,92,444,160);
         JScrollPane1.getViewport().add(JTable1);
         JTable1.setBounds(0, 0, 420, 0);
 	}
+	
+	public void addRow(Object rowdata[]) {
+        model.addRow(rowdata);
+
+	}
 
 
 	javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
-	javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
-	javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
-	javax.swing.JButton JButton_Deposit = new javax.swing.JButton();
-	javax.swing.JButton JButton_Withdraw = new javax.swing.JButton();
-	javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
+	protected javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_Deposit = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_Withdraw = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
 	javax.swing.JButton JButton_Exit = new javax.swing.JButton();
 
 	void exitApplication()
@@ -216,8 +231,9 @@ public class DefaultMainView extends javax.swing.JFrame
 	{
 		System.exit(0);
 	}
+    
 
-	void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		/*
 		 JDialog_AddPAcc type object is for adding personal information
@@ -225,7 +241,7 @@ public class DefaultMainView extends javax.swing.JFrame
 		 set the boundaries and show it 
 		*/
 		
-		AddPersonalAcc pac = new AddPersonalAcc(myframe);
+		AddCompAcc pac = new AddCompAcc(myframe);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
@@ -237,16 +253,11 @@ public class DefaultMainView extends javax.swing.JFrame
             rowdata[3] = "P";
             rowdata[4] = accountType;
             rowdata[5] = "0";
-            model.addRow(rowdata);
-            JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
-            newaccount=false;
-        }
-
-       
-        
+            addRow(rowdata);
+		}  
     }
 
-	void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		/*
 		 construct a JDialog_AddCompAcc type object 
@@ -273,7 +284,7 @@ public class DefaultMainView extends javax.swing.JFrame
 
 	}
 
-	void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
 	{
 	    // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
@@ -296,7 +307,7 @@ public class DefaultMainView extends javax.swing.JFrame
 		
 	}
 
-	void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
+	protected void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
 	{
 	    // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
