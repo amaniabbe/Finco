@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import Default.View.DefaultMainView.SymAction;
+import controller.Finco;
 
 import javax.swing.*;
 
@@ -27,6 +28,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	private JScrollPane JScrollPane1;
 	DefaultMainView myframe;
 	protected Object rowdata[];
+	protected Finco finco;
 
 	public DefaultMainView() {
 		myframe = this;
@@ -36,6 +38,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setSize(575, 310);
 		setVisible(false);
+		finco = new Finco();
 		JPanel1.setLayout(null);
 		getContentPane().add(BorderLayout.CENTER, JPanel1);
 

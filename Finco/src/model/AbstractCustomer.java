@@ -67,6 +67,11 @@ public abstract class AbstractCustomer implements ICustomer {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	@Override
+	public String getEMail() {
+		return this.emailAddress;
+	}
 	
 	
 

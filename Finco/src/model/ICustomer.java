@@ -17,5 +17,7 @@ public interface ICustomer {
 	String getNames();
 	
 	Address getAddress();
+	
+	String getEMail();
 
 }
