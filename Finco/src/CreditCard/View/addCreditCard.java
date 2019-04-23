@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.swing.JRadioButton;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
