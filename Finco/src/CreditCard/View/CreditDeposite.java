@@ -10,5 +10,6 @@ public class CreditDeposite extends Deposit{
 		// TODO Auto-generated constructor stub
 		setTitle("Credit Card deposite");
 	}
+	
 
 }
