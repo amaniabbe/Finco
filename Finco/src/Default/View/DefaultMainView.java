@@ -20,7 +20,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	/****
 	 * init variables in the object
 	 ****/
-	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit;
+	String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit,email;
 	boolean newaccount;
 	protected DefaultTableModel model;
 	protected JTable JTable1;
@@ -256,7 +256,6 @@ public class DefaultMainView extends javax.swing.JFrame {
 			rowdata[2] = city;
 			rowdata[3] = "C";
 			rowdata[4] = accountType;
-			rowdata[5] = "0";
 			model.addRow(rowdata);
 			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
 			newaccount = false;
