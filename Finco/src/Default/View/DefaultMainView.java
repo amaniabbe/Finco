@@ -41,6 +41,7 @@ public class DefaultMainView extends javax.swing.JFrame
 		JPanel1.setLayout(null);
 		getContentPane().add(BorderLayout.CENTER, JPanel1);
 		JPanel1.setBounds(0,0,575,310);
+		this.setLocationRelativeTo(null);
 		/*
 		/Add five buttons on the pane 
 		/for Adding personal account, Adding company account
@@ -252,7 +253,6 @@ public class DefaultMainView extends javax.swing.JFrame
             rowdata[2] = city;
             rowdata[3] = "P";
             rowdata[4] = accountType;
-            rowdata[5] = "0";
             addRow(rowdata);
 		}  
     }
