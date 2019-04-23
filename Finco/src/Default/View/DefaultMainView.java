@@ -60,7 +60,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 //        JScrollPane1.setBounds(12,92,444,160);
 //        JScrollPane1.getViewport().add(JTable1);
 //        JTable1.setBounds(0, 0, 420, 0);
-		List<String> list = Arrays.asList("AccountNr", "Name", "City", "P/C", "Ch/S");
+		List<String> list = Arrays.asList("AccountNr", "Name", "City", "P/C");
 		JScrollPane1 = new JScrollPane();
 		setJScrollPane(list);
 //        rowdata = new Object[8];
@@ -229,7 +229,6 @@ public class DefaultMainView extends javax.swing.JFrame {
 			rowdata[1] = clientName;
 			rowdata[2] = city;
 			rowdata[3] = "P";
-			rowdata[4] = accountType;
 			addRow(rowdata);
 		}
 	}
@@ -248,9 +247,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 			rowdata[0] = accountnr;
 			rowdata[1] = clientName;
 			rowdata[2] = city;
-			rowdata[3] = "C";
-			rowdata[4] = accountType;
-			rowdata[5] = "0";
+			rowdata[3] = "P";
 			model.addRow(rowdata);
 			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
 			newaccount = false;

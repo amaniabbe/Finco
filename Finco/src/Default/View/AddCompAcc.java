@@ -26,14 +26,14 @@ public class AddCompAcc extends javax.swing.JDialog
 //		setSize(400,400);
 //		pack() ;
 		setVisible(false);
-		JRadioButton_Chk.setText("Checkings");
-		JRadioButton_Chk.setActionCommand("Checkings");
-		getContentPane().add(JRadioButton_Chk);
-		JRadioButton_Chk.setBounds(36,12,84,24);
-		JRadioButton_Sav.setText("Savings");
-		JRadioButton_Sav.setActionCommand("Savings");
-		getContentPane().add(JRadioButton_Sav);
-		JRadioButton_Sav.setBounds(36,36,84,24);
+//		JRadioButton_Chk.setText("Checkings");
+//		JRadioButton_Chk.setActionCommand("Checkings");
+//		getContentPane().add(JRadioButton_Chk);
+//		JRadioButton_Chk.setBounds(36,12,84,24);
+//		JRadioButton_Sav.setText("Savings");
+//		JRadioButton_Sav.setActionCommand("Savings");
+//		getContentPane().add(JRadioButton_Sav);
+//		JRadioButton_Sav.setBounds(36,36,84,24);
 		JLabel1.setText("Name");
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(java.awt.Color.black);
@@ -86,7 +86,7 @@ public class AddCompAcc extends javax.swing.JDialog
 		JButton_OK.setActionCommand("OK");
 		getContentPane().add(JButton_OK);
 		JButton_OK.setBounds(48,290,84,24);
-		JButton_Calcel.setText("Cancel sdfsdf");
+		JButton_Calcel.setText("Cancel");
 		JButton_Calcel.setActionCommand("Cancel");
 		getContentPane().add(JButton_Calcel);
 		JButton_Calcel.setBounds(156,290,84,24);
@@ -110,8 +110,7 @@ public class AddCompAcc extends javax.swing.JDialog
 
 
 	//{{DECLARE_CONTROLS
-	protected javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
-	protected javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
+
 	protected javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
 	protected javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
 	protected javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
@@ -153,10 +152,7 @@ public class AddCompAcc extends javax.swing.JDialog
        parentframe.city=JTextField_CT.getText();
        parentframe.zip=JTextField_ZIP.getText();
        parentframe.state=JTextField_ST.getText();
-       if (JRadioButton_Chk.isSelected())
-           parentframe.accountType="Ch";
-           else
-           parentframe.accountType="S";
+
 	   parentframe.newaccount=true;
 	   dispose();
 			 
