@@ -1,8 +1,5 @@
-/View/
-/project/
-/Main.class
-/Default/
-/CreditCard/
+/ccard/
+/controller/
+/factory/
 /Bank/
-/Help/
-/model/
+/CreditCard/

@@ -58,7 +58,53 @@ public class addCreditCard extends AddCompAcc {
 		JLabel8.setText("Ex. Date");
 		JTextField_ACNR.setVisible(true);
 		JLabel8.setVisible(true);
+		SymMouse aSymMouse = new SymMouse();
+		JRadioButton_gold.addMouseListener(aSymMouse);
+		JRadioButton_Silver.addMouseListener(aSymMouse);
+		JRadioButton_bronze.addMouseListener(aSymMouse);
+		
 	}
+	
+	
+
+	class SymMouse extends java.awt.event.MouseAdapter
+	{
+		public void mouseClicked(java.awt.event.MouseEvent event)
+		{
+			Object object = event.getSource();
+			if (object == JRadioButton_gold)
+				JRadioButtonGold_mouseClicked(event);
+			else if (object == JRadioButton_Silver)
+				JRadioButtonSilver_mouseClicked(event);
+			else if (object == JRadioButton_bronze)
+				JRadioButtonBronze_mouseClicked(event);
+			
+			
+		}
+	}
+
+	void JRadioButtonGold_mouseClicked(java.awt.event.MouseEvent event)
+	{
+		JRadioButton_gold.setSelected(true);
+		JRadioButton_Silver.setSelected(false);
+		JRadioButton_bronze.setSelected(false);
+	}
+
+	void JRadioButtonSilver_mouseClicked(java.awt.event.MouseEvent event)
+	{
+		JRadioButton_gold.setSelected(false);
+		JRadioButton_Silver.setSelected(true);
+		JRadioButton_bronze.setSelected(false);
+	 
+	}
+	void JRadioButtonBronze_mouseClicked(java.awt.event.MouseEvent event)
+	{
+		JRadioButton_gold.setSelected(false);
+		JRadioButton_Silver.setSelected(false);
+		JRadioButton_bronze.setSelected(true);
+			 
+	}
+
 	
 	
 	
