@@ -2,10 +2,13 @@ package Bank.View;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
 import Default.View.AddCompAcc.SymAction;
+import model.Address;
+import model.ICustomer;
 
 public class AddCompanyAccView extends AddCompAcc {
 
@@ -28,24 +31,36 @@ public class AddCompanyAccView extends AddCompAcc {
 		JLabel6.setText("No of Employees");
 
 	}
-	
-	
-	
-	
+
 	@Override
 	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
 		// TODO Auto-generated method stub
-		parent.name = JTextField_ACNR.getText();
-		parent.street = JTextField_NAME.getText();
-		parent.city = JTextField_STR.getText();
-		parent.state = JTextField_CT.getText();
+
+		parent.chS = "S";
+		// TODO Auto-generated method stub
+		parent.name = JTextField_NAME.getText();
+		parent.street = JTextField_STR.getText();
+		parent.city = JTextField_CT.getText();
+		parent.state = JTextField_ST.getText();
 		parent.zip = JTextField_ZIP.getText();
-		parent.email = JTextField_ST.getText();
+		parent.email = JTextField_EM.getText();
 		if (JRadioButton_Chk.isSelected())
 			parent.chS = "Ch";
 		else
 			parent.chS = "S";
 		parent.newaccount = true;
+
+		Address a = new Address(parent.state.toString(), parent.city.toString(), parent.street.toString(),
+				parent.zip.toString());
+		parent.main.createCompany(a, parent.name.toString(), parent.email.toString(), 10);
+		ICustomer c = parent.main.findCustomer(parent.name.toString());
+		String accNumber = UUID.randomUUID().toString().split("-")[1].toUpperCase();
+		if (parent.chS.toString().equals("Ch")) {
+			parent.main.addCheckingAccount(c, accNumber);
+		} else {
+			parent.main.addSavingAccount(c, accNumber);
+		}
+		parent.refresh();
 		dispose();
 	}
 

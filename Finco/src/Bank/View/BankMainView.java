@@ -6,13 +6,17 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import Bank.controller.BankMain;
 import CreditCard.View.CreditDeposite;
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
 import Default.View.Deposit;
+import Default.View.Refresh;
 import Default.View.Withdraw;
+import model.IAccount;
+import model.ICustomer;
 
-public class BankMainView extends DefaultMainView {
+public class BankMainView extends DefaultMainView implements Refresh{
 
 	protected boolean newaccount;
 	protected Object name;
@@ -27,11 +31,33 @@ public class BankMainView extends DefaultMainView {
 	protected Object amount;
 	private Object amountDeposit;
 
+	protected BankMain main;
+
 	public BankMainView() {
 
 		this.setTitle("Bank View ");
-		List<String> list = Arrays.asList("Street" , "City" ,"State" , "ZIP" , "P/CC" ,"Ch/S" , "Amount") ; 
+		List<String> list = Arrays.asList("Street", "City", "State", "ZIP", "P/CC", "Ch/S", "Amount");
 		setJScrollPane(list);
+		main = new BankMain();
+		refre();
+	}
+
+	public void refre() {
+		System.out.println(main.getCustomers().size());
+		model.setRowCount(0);
+		for (ICustomer c : main.getCustomers()) {
+			for (IAccount a : c.getListOfAccounts()) {
+				rowdata[0] = c.getAddress().getStreet();
+				rowdata[1] = c.getAddress().getCity();
+				rowdata[2] = c.getAddress().getState();
+				rowdata[3] = c.getAddress().getZipCode();
+				rowdata[4] = c.getClass().getSimpleName();
+				rowdata[5] = a.getClass().getSimpleName();
+				rowdata[6] = a.getBalance();
+				model.addRow(rowdata);
+			}
+		}
+		
 	}
 
 	@Override
@@ -44,8 +70,9 @@ public class BankMainView extends DefaultMainView {
 		AddPersonalAccView pac = new AddPersonalAccView(this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
-		
-		refresh();
+
+		refre();
+		;
 	}
 
 	@Override
@@ -54,8 +81,9 @@ public class BankMainView extends DefaultMainView {
 		AddCompanyAccView pac = new AddCompanyAccView(this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
-		
-		refresh();
+
+		refre();
+		;
 
 	}
 
@@ -71,7 +99,7 @@ public class BankMainView extends DefaultMainView {
 			Deposit dep = new Deposit(this, accnr);
 			dep.setBounds(430, 15, 275, 140);
 			dep.show();
-
+			refre();
 		}
 
 	}
@@ -103,6 +131,11 @@ public class BankMainView extends DefaultMainView {
 			}
 		}
 
+	}
+	
+	@Override
+	public void reload() {
+		refre();
 	}
 
 }

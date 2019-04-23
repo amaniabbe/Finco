@@ -19,11 +19,11 @@ import javax.swing.*;
 /**
  * A basic JFC based application.
  **/
-public class DefaultMainView extends javax.swing.JFrame {
+public class DefaultMainView extends javax.swing.JFrame implements Refresh {
 	/****
 	 * init variables in the object
 	 ****/
-	protected String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit, email;
+	public String accountnr, clientName, street, city, zip, state, accountType, clientType, amountDeposit, email;
 	boolean newaccount;
 	protected DefaultTableModel model;
 	protected JTable JTable1;
@@ -94,7 +94,6 @@ public class DefaultMainView extends javax.swing.JFrame {
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
 		addVODButtons(lSymAction);
-		refresh();
 
 	}
 
@@ -148,7 +147,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 		}
 
 		rowdata = new Object[list.size()];
-		refresh();
+		this.refresh();
 		newaccount = false;
 
 		JPanel1.add(JScrollPane1);
@@ -305,4 +304,15 @@ public class DefaultMainView extends javax.swing.JFrame {
 		refresh();
 
 	}
+
+	public Finco getFinco() {
+		return finco;
+	}
+
+	@Override
+	public void reload() {
+		refresh();
+
+	}
+
 }

@@ -33,7 +33,6 @@ public class Finco {
 		AccountFactory.getFactory();
 		IAccount account = AccountFactory.createAccount(customer, accountNumber);
 		customer.addAccount(account);
-		System.out.println("the current list is :" + customers.size());
 	}
 
 	public void addPersonalAccount(ICustomer customer, String accountNumber) {
