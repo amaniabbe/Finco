@@ -67,7 +67,7 @@ public class BankMainView extends DefaultMainView {
 		 */
 
 		AddPersonalAccView pac = new AddPersonalAccView(this);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
 		pac.show();
 
 		refre();
@@ -78,7 +78,7 @@ public class BankMainView extends DefaultMainView {
 	protected void JButtonCompAC_actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
 		AddCompanyAccView pac = new AddCompanyAccView(this);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
 		pac.show();
 
 		refre();

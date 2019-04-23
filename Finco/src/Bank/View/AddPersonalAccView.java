@@ -30,7 +30,37 @@ public class AddPersonalAccView extends AddCompAcc {
 		JRadioButton_Sav.setBounds(36, 36, 84, 24);
 		JLabel8.setVisible(false);
 		JTextField_ACNR.setVisible(false);
+		SymMouse mouse = new SymMouse() ; 
+		JRadioButton_Chk.addMouseListener(mouse);
+		JRadioButton_Sav.addMouseListener(mouse);
 
+	}
+	
+	class SymMouse extends java.awt.event.MouseAdapter
+	{
+		public void mouseClicked(java.awt.event.MouseEvent event)
+		{
+			Object object = event.getSource();
+			if (object == JRadioButton_Chk)
+				JRadioButtonChk_mouseClicked(event);
+			else if (object == JRadioButton_Sav)
+				JRadioButtonSav_mouseClicked(event);
+		}
+	}
+
+	void JRadioButtonChk_mouseClicked(java.awt.event.MouseEvent event)
+	{
+		
+		JRadioButton_Chk.setSelected(true);
+		JRadioButton_Sav.setSelected(false);
+		
+		
+	}
+
+	void JRadioButtonSav_mouseClicked(java.awt.event.MouseEvent event)
+	{
+		JRadioButton_Chk.setSelected(false);
+		JRadioButton_Sav.setSelected(true);
 	}
 
 	@Override

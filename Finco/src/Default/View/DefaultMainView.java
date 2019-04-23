@@ -245,7 +245,8 @@ public class DefaultMainView extends javax.swing.JFrame {
 		 */
 
 		addPerAcc pac = new addPerAcc(myframe);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
+//		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
 		/*
@@ -258,7 +259,7 @@ public class DefaultMainView extends javax.swing.JFrame {
 	protected void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event) {
 
 		AddCompAcc pac = new AddCompAcc(myframe);
-		pac.setBounds(450, 20, 300, 330);
+		pac.setSize(300, 400);
 		pac.show();
 
 		refresh();
