@@ -9,13 +9,16 @@ public class Entry implements IEntry {
 	private String description;
 
 	private double amount;
+	
+	private String accountNumber;
 
 	
 	
-	public Entry(Date recordedDate,String description,double amount) {
+	public Entry(Date recordedDate,String description,double amount,String accountNumber) {
 		this.recordedDate = recordedDate;
 		this.description = description;
 		this.amount = amount;
+		this.accountNumber = accountNumber;
 	}
 
 	@Override
@@ -32,5 +35,14 @@ public class Entry implements IEntry {
 	public double amount() {
 		return this.amount;
 	}
+
+	@Override
+	public String accountNumber() {
+		return this.accountNumber;
+	}
+
+	
+	
+	
 
 }

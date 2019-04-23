@@ -11,11 +11,10 @@ public abstract class AbstractCustomer implements ICustomer {
 	protected String names;
 
 	protected String emailAddress;
-	
+
 	private Address address;
-	
-	
-	 public AbstractCustomer(String names,String emailAddress,Address address) {
+
+	public AbstractCustomer(String names, String emailAddress, Address address) {
 		this.names = names;
 		this.emailAddress = emailAddress;
 		this.address = address;
@@ -33,7 +32,7 @@ public abstract class AbstractCustomer implements ICustomer {
 
 	@Override
 	public void sendEMail() {
-		System.out.println("Email is sent to the customer with emailAddress  :" + emailAddress);
+		System.out.println("Email is sent to the customer");
 
 	}
 
@@ -42,7 +41,6 @@ public abstract class AbstractCustomer implements ICustomer {
 		return this.accounts;
 	}
 
-	
 	@Override
 	public String getNames() {
 		return names;
@@ -72,7 +70,5 @@ public abstract class AbstractCustomer implements ICustomer {
 	public String getEMail() {
 		return this.emailAddress;
 	}
-	
-	
 
 }

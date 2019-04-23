@@ -54,10 +54,9 @@ public class Finco {
 
 	}
 
-	public String depositAmountCompany(String accountNumber, double amount) {
-		IAccount account = findAccount(accountNumber);
+	public String depositAmountCompany(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Deposit made", amount);
+			IEntry entry = new Entry(new Date(), "Deposit made", amount,account.getAccountNumber());
 			account.depositMoney(amount);
 			account.addEntry(entry);
 			account.notifyObservers();
@@ -66,54 +65,63 @@ public class Finco {
 		return "Unknown Account";
 	}
 
-	public String depositAmountPersonal(String accountNumber, double amount) {
-		IAccount account = findAccount(accountNumber);
+	public void depositAmountPersonal(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Deposit made", amount);
+			IEntry entry = new Entry(new Date(), "Deposit made", amount,account.getAccountNumber());
 			account.depositMoney(amount);
 			account.addEntry(entry);
 			if (amount > 500) {
 				account.notifyObservers();
 			}
-			return "Amount is successfully deposed on account for  :" + account.getOwner().getNames();
 		}
-		return "Unknown Account";
+
 	}
 
-	public String withDrwalCompany(String accountNumber, double amount) {
-		IAccount account = findAccount(accountNumber);
+	public void withDrwalCompany(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Withdraw made", amount);
+			IEntry entry = new Entry(new Date(), "Withdraw made", amount,account.getAccountNumber());
 			account.withdraw(amount);
 			account.addEntry(entry);
 			account.notifyObservers();
-			return "Amount is successfully withdrawen on account for  :" + account.getOwner().getNames();
 		}
-		return "Unknown Account";
 	}
 
-	public String withDrwalPersonal(String accountNumber, double amount) {
-		IAccount account = findAccount(accountNumber);
+	public void withDrwalPersonal(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Withdraw made", amount);
+			IEntry entry = new Entry(new Date(), "Withdraw made", amount,account.getAccountNumber());
 			account.withdraw(amount);
 			account.addEntry(entry);
 			if (account.getBalance() < 0) {
 				account.getOwner().sendEMail();
 			}
-			return "Amount is successfully withdrawen on account for  :" + account.getOwner().getNames();
 		}
-		return "Unknown Account";
+	}
+
+	public void deposit(String accountNumber, double amount, String type) {
+		IAccount account = findAccount(accountNumber);
+		if (account != null && type.equals("Company")) {
+			depositAmountCompany(account, amount);
+		} else if (account != null && type.equals("Person")) {
+			depositAmountPersonal(account, amount);
+		}
+	}
+
+	public void withdraw(String accountNumber, double amount, String type) {
+		IAccount account = findAccount(accountNumber);
+		if (account != null && type.equals("Company")) {
+			withDrwalCompany(account, amount);
+		} else if (account != null && type.equals("Person")) {
+			withDrwalPersonal(account, amount);
+		}
 	}
 
 	public void addInterest() {
 		customers.stream().flatMap(x -> x.getListOfAccounts().stream()).forEach(IAccount::addInterest);
+
 	}
 
 	public List<ICustomer> getCustomers() {
 		return customers;
 	}
-	
-	
 
 }

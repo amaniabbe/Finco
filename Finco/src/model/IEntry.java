@@ -10,6 +10,8 @@ public interface IEntry {
 	
 	double amount();
 	
+	String accountNumber();
+	
 	
 
 }
