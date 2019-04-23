@@ -39,7 +39,7 @@ public class CompanyDAO  implements ICompanyDAO{
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
                 + "	email text NOT NULL,\n"
-                + "	noofemployess int\n"
+                + "	noofemployess int, \n"
                 + "	state text,\n"
                 + "	city text,\n"
                 + "	street text,\n"
@@ -143,7 +143,7 @@ public class CompanyDAO  implements ICompanyDAO{
 		    pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("addCompany: " +e.getMessage());
         }
 
 		

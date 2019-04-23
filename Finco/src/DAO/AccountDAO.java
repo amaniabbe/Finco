@@ -49,7 +49,7 @@ public class AccountDAO implements IAccountDAO{
 
 
 	@Override
-	public List<IAccount> getAllcustomers() {
+	public List<IAccount> getAllAccounts() {
 		String sql = "SELECT * FROM account;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
@@ -67,7 +67,9 @@ public class AccountDAO implements IAccountDAO{
 				owner = rs.getString("owner");
 				balance = rs.getDouble("balance");
 				
-				account = new Account(null, accountnumber);
+				
+				account = new Account(new Person(owner, null,null),accountnumber,balance);
+				
 				accounts.add(account);				
 			}
 			
@@ -97,7 +99,7 @@ public class AccountDAO implements IAccountDAO{
 		String sql = "INSERT INTO account("
                 + "accountnumber,"
                 + "balance,"
-                + "owner )"
+                + "owner) "
 			    +  "VALUES(?,?,?)";
 		try ( Connection conn = DriverManager.getConnection(url)) {
 				
@@ -112,7 +114,7 @@ public class AccountDAO implements IAccountDAO{
 		    pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("addAccount: " + e.getMessage());
         }
 		return false;
 	}

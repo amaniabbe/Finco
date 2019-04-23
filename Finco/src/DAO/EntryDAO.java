@@ -55,10 +55,9 @@ public class EntryDAO implements IEntryDAO{
 	}
 
 	@Override
-	public List<IEntry> getAllcustomers() {
+	public List<IEntry> getAllentries() {
 		
 		IEntry entry;
-		String name;
 		double amount;
 		String accountnumber;
 		String description;
@@ -78,7 +77,7 @@ public class EntryDAO implements IEntryDAO{
 				date = rs.getString("date");
 				accountnumber = rs.getString("accountnumber");
 			    Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-				entry = new Entry(date1, description, amount);
+				entry = new Entry(date1, description, amount,accountnumber);
 				entries.add(entry);
 				
 				rs.next();
@@ -124,7 +123,7 @@ public class EntryDAO implements IEntryDAO{
 		    pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("addEntry: " +e.getMessage());
         }
 		return false;
 	}

@@ -145,7 +145,7 @@ public class PersonDAO implements IPersonDAO{
 		    pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("addPerson: " +e.getMessage());
         }
 		return true;
 	}
