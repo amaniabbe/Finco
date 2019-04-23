@@ -6,6 +6,7 @@ public class Account extends AbstractAccount {
 		addOwner(customer);
 		this.accountNumber = accountNumber;
 		this.owner = customer;
+		this.interest = 0.02;
 	}
 
 	@Override

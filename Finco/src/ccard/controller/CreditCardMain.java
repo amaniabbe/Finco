@@ -30,7 +30,7 @@ public class CreditCardMain extends Finco {
 
 	public void chargeCard(String acountNumber, double amount) {
 		IAccount account = findAccount(acountNumber);
-		account.addEntry(new Entry(new Date(), "charge", amount));
+		account.addEntry(new Entry(new Date(), "charge", amount,account.getAccountNumber()));
 		if (amount > 400) {
 			account.getOwner().sendEMail();
 		}
