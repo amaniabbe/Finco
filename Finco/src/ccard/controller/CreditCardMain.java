@@ -30,7 +30,8 @@ public class CreditCardMain extends Finco {
 
 	public void chargeCard(String acountNumber, double amount) {
 		IAccount account = findAccount(acountNumber);
-		account.addEntry(new Entry(new Date(), "charge", amount,account.getAccountNumber()));
+		account.depositMoney(amount);
+		account.addEntry(new Entry(new Date(), "charge", amount, account.getAccountNumber()));
 		if (amount > 400) {
 			account.getOwner().sendEMail();
 		}
@@ -49,7 +50,7 @@ public class CreditCardMain extends Finco {
 		return ((CreditCard) card).getMinimumPayment() * newBalance(card);
 	}
 
-	public String generateBill() {
+	public String generateMonthlyReport() {
 		String report = "";
 		for (ICustomer customer : getCustomers()) {
 			report += "Customer : " + customer.getNames();

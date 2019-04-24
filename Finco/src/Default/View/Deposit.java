@@ -7,8 +7,8 @@ import model.IAccount;
 
 public class Deposit extends javax.swing.JDialog {
 
-	private DefaultMainView parentframe;
-	private String accnr;
+	protected DefaultMainView parentframe;
+	protected String accnr;
 
 	public Deposit(DefaultMainView parent, String aaccnr) {
 		super(parent);
@@ -62,7 +62,7 @@ public class Deposit extends javax.swing.JDialog {
 	javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
 	javax.swing.JButton JButton_OK = new javax.swing.JButton();
 	javax.swing.JButton JButton_Cancel = new javax.swing.JButton();
-	javax.swing.JTextField JTextField_Deposit = new javax.swing.JTextField();
+	protected javax.swing.JTextField JTextField_Deposit = new javax.swing.JTextField();
 	// }}
 
 	class SymAction implements java.awt.event.ActionListener {
@@ -75,7 +75,7 @@ public class Deposit extends javax.swing.JDialog {
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
 		parentframe.amountDeposit = JTextField_Deposit.getText();
 		double amount = Double.parseDouble(parentframe.amountDeposit);
 		parentframe.finco.deposit(accnr, amount, parentframe.accountType);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Finco/Finco.iml" filepath="$PROJECT_DIR$/Finco/Finco.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FincoFramework.iml" filepath="$PROJECT_DIR$/.idea/FincoFramework.iml" />
+    </modules>
+  </component>
+</project>

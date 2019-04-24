@@ -2,10 +2,13 @@ package Bank.View;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
 import Default.View.AddCompAcc.SymAction;
+import model.Address;
+import model.ICustomer;
 
 public class AddPersonalAccView extends AddCompAcc {
 
@@ -74,6 +77,18 @@ public class AddPersonalAccView extends AddCompAcc {
 		else
 			parent.chS = "S";
 		parent.newaccount = true;
+
+		Address a = new Address(parent.state.toString(), parent.city.toString(), parent.street.toString(),
+				parent.zip.toString());
+		parent.main.createPerson(a, parent.name.toString(), parent.email.toString());
+		ICustomer c = parent.main.findCustomer(parent.name.toString());
+		String accNumber = UUID.randomUUID().toString().split("-")[1].toUpperCase();
+		if (parent.chS.toString().equals("Ch")) {
+			parent.main.addCheckingAccount(c, accNumber);
+		} else {
+			parent.main.addSavingAccount(c, accNumber);
+		}
+		parent.refre();
 		dispose();
 	}
 

@@ -1,0 +1,7 @@
+
+FinCo framework for ASD
+
+
+PROJECT MEMBERS : 
+
+   JEAN DE DIEU IRADUKUNDA 987115

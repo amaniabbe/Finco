@@ -6,7 +6,6 @@ import java.util.UUID;
 import javax.swing.*;
 
 import controller.Finco;
-import javafx.scene.Parent;
 import model.Address;
 import model.ICustomer;
 
