@@ -33,7 +33,6 @@ public class Finco {
 		AccountFactory.getFactory();
 		IAccount account = AccountFactory.createAccount(customer, accountNumber);
 		customer.addAccount(account);
-		System.out.println("the current list is :" + customers.size());
 	}
 
 	public void addPersonalAccount(ICustomer customer, String accountNumber) {
@@ -99,10 +98,12 @@ public class Finco {
 
 	public void deposit(String accountNumber, double amount, String type) {
 		IAccount account = findAccount(accountNumber);
-		if (account != null && type.equals("Company")) {
+		if (account != null && type.equalsIgnoreCase("Company")) {
 			depositAmountCompany(account, amount);
-		} else if (account != null && type.equals("Person")) {
+		} else if (account != null && type.equalsIgnoreCase("Person")) {
 			depositAmountPersonal(account, amount);
+		}else {
+			System.out.println("Not found");
 		}
 	}
 
