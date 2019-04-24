@@ -92,7 +92,6 @@ public class PersonDAO implements IPersonDAO{
 				address.setState(state);
 				address.setStreet(street);
 				address.setZipCode(zipcode);
-				System.out.println("datahere " + dateofbirth + name);
 			    Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(dateofbirth);
 				
 				person = new Person(name,emailAddress,address,date1);

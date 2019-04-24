@@ -88,7 +88,7 @@ public class AddPersonalAccView extends AddCompAcc {
 		} else {
 			parent.main.addSavingAccount(c, accNumber);
 		}
-		parent.refresh();
+		parent.refre();
 		dispose();
 	}
 

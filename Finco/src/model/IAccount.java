@@ -27,5 +27,7 @@ public interface IAccount {
 	List<IEntry> entries();
 	
 	void setInterest(double percentage);
+	
+	void setBalance(double balance);
 
 }
