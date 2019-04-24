@@ -26,10 +26,6 @@ public class SystemDAOmanager {
 		List<IEntry> entryList = entryDAO.getAllentries();
 		
 		
-		
-		System.out.println(accountList.size());
-		System.out.println(entryList.size());
-		
 		accountList.stream().forEach(account->{
 			for(IEntry entry :  entryList) {
 				if(account.getAccountNumber() == entry.accountNumber())
@@ -86,7 +82,7 @@ public class SystemDAOmanager {
 			for(IAccount account : person.getListOfAccounts()) {
 				for(IEntry entry : account.entries()) {
 					entryDAO.addEntry(entry);
-					System.out.println(entry.accountNumber());
+				
 				}
 				accountDAO.addAccount(account);
 			}
@@ -100,7 +96,7 @@ public class SystemDAOmanager {
 			for(IAccount account : company.getListOfAccounts()) {
 				for(IEntry entry : account.entries()) {
 					entryDAO.addEntry(entry);
-					System.out.println(entry.accountNumber());
+					
 				}
 					
 				accountDAO.addAccount(account);
