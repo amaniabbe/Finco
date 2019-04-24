@@ -112,7 +112,7 @@ public class Finco {
 		if (account != null && type.equals("Company")) {
 			withDrwalCompany(account, amount);
 		} else if (account != null && type.equals("Person")) {
-			withDrwalPersonal(account, amount);x
+			withDrwalPersonal(account, amount);
 		}
 	}
 
