@@ -1,20 +1,32 @@
 package Bank.View;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import Bank.controller.BankMain;
+<<<<<<< HEAD
 import CreditCard.View.CreditDeposite;
+=======
+import DAO.SystemDAOmanager;
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
 import Default.View.Deposit;
 import Default.View.Refresh;
 import Default.View.Withdraw;
 import model.IAccount;
+<<<<<<< HEAD
 import model.ICustomer;
+=======
+import model.ICompany;
+import model.ICustomer;
+import model.IPerson;
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 
 public class BankMainView extends DefaultMainView {
 
@@ -108,7 +120,11 @@ public class BankMainView extends DefaultMainView {
 		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
 		if (selection >= 0) {
 			String accnr = (String) model.getValueAt(selection, 0);
+<<<<<<< HEAD
 			accountType = (String)model.getValueAt(selection, 4);
+=======
+			accountType = (String) model.getValueAt(selection, 4);
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 
 			// Show the dialog for adding withdraw amount for the current mane
 			BankWithdraw wd = new BankWithdraw(this, accnr);
@@ -121,8 +137,35 @@ public class BankMainView extends DefaultMainView {
 
 	@Override
 	protected void JButtonAddinterest_actionPerformed(ActionEvent event) {
+<<<<<<< HEAD
 	    main.addInterest();
 	    refre();
 	}
 	
+=======
+		main.addInterest();
+		refre();
+	}
+
+	@Override
+	protected void JButtonExit_actionPerformed(ActionEvent event) {
+		List<IPerson> persons = new ArrayList<>();
+		List<ICompany> companies = new ArrayList<>();
+		System.out.println(main.persons.size());
+		for (ICustomer c : main.persons) {
+			if (c instanceof IPerson) {
+				persons.add((IPerson) c);
+				System.out.println(c.getNames());
+			} else {
+				companies.add((ICompany) c);
+				System.out.println(c.getNames());
+			}
+
+		}
+		new SystemDAOmanager().addCompanies(companies);
+		new SystemDAOmanager().addPersons(persons);
+		System.exit(0);
+	}
+
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 }

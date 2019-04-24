@@ -36,6 +36,16 @@ public class PersonDAO implements IPersonDAO{
 	}
 	
 	void init() {	
+<<<<<<< HEAD
+=======
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		String sql = "CREATE TABLE IF NOT EXISTS person (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
@@ -65,8 +75,20 @@ public class PersonDAO implements IPersonDAO{
 
 	@Override
 	public List<IPerson> getAllcustomers() {
+<<<<<<< HEAD
 		
 		String sql = "SELECT * FROM person;";
+=======
+		persons.clear();
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql = "SELECT * FROM person ;";
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
             // get all values a new table
@@ -95,6 +117,10 @@ public class PersonDAO implements IPersonDAO{
 			    Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(dateofbirth);
 				
 				person = new Person(name,emailAddress,address,date1);
+<<<<<<< HEAD
+=======
+				if(!persons.contains(person))
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 				persons.add(person);
 							
 			}
@@ -110,6 +136,17 @@ public class PersonDAO implements IPersonDAO{
 
 	@Override
 	public boolean addCustomer(IPerson customer) {
+<<<<<<< HEAD
+=======
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		String sql = "INSERT INTO person("
 				+ "	name,"
                 + "	dateofbirth,"

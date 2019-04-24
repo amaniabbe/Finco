@@ -17,19 +17,36 @@ public class AccountDAO implements IAccountDAO{
 	String url = "jdbc:sqlite:finco/src/Storage/FincoDatabase.db";
 	
 	
+<<<<<<< HEAD
 	public AccountDAO(List<IAccount> accounts) {
+=======
+	public AccountDAO(List<IAccount> accounts){
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		
 		this.accounts = accounts;
 		this.init();
 	}
 	
+<<<<<<< HEAD
     public AccountDAO() {
+=======
+    public AccountDAO(){
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		
 		this.accounts = new ArrayList<>();
 		this.init();
 	}
 	
 	void init() {	
+<<<<<<< HEAD
+=======
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		String sql = "CREATE TABLE IF NOT EXISTS account (\n"
                 	 + "id integer PRIMARY KEY AUTOINCREMENT,\n"
                      + "accountnumber text NOT NULL,\n"
@@ -50,6 +67,15 @@ public class AccountDAO implements IAccountDAO{
 
 	@Override
 	public List<IAccount> getAllAccounts() {
+<<<<<<< HEAD
+=======
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		String sql = "SELECT * FROM account;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
@@ -70,7 +96,11 @@ public class AccountDAO implements IAccountDAO{
 				
 				
 				account = new Account(new Person(owner, null,null,null),accountnumber,balance);
+<<<<<<< HEAD
 				
+=======
+				if(!accounts.contains(account))
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 				accounts.add(account);				
 			}
 			
@@ -97,6 +127,15 @@ public class AccountDAO implements IAccountDAO{
 
 	@Override
 	public boolean addAccount(IAccount account) {
+<<<<<<< HEAD
+=======
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 		String sql = "INSERT INTO account("
                 + "accountnumber,"
                 + "balance,"

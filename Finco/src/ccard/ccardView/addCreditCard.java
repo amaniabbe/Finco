@@ -1,4 +1,4 @@
-package CreditCard.View;
+package ccard.ccardView;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;

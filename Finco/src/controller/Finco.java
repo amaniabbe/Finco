@@ -2,7 +2,7 @@ package controller;
 
 import java.util.*;
 
-import model.Account;
+import DAO.SystemDAOmanager;
 import model.Address;
 import model.Entry;
 import model.IAccount;
@@ -11,16 +11,22 @@ import model.IEntry;
 
 public class Finco {
 
-	private List<ICustomer> customers = new ArrayList<>();
+	protected SystemDAOmanager daoManager;
 
-	public static void main(String args[]) {
+	protected List<ICustomer> customers;
 
+	public List<ICustomer> persons = new ArrayList<>();
+
+	public Finco() {
+		daoManager = new SystemDAOmanager();
+		customers = daoManager.customers();
 	}
 
 	public void createPerson(Address address, String names, String emailAddress) {
 		CustomerFactory.getFactory();
 		ICustomer customer = CustomerFactory.createPerson(names, emailAddress, address);
 		customers.add(customer);
+
 	}
 
 	public void createCompany(Address adress, String names, String emailAddress, Integer numberOfEmployees) {
@@ -53,20 +59,18 @@ public class Finco {
 
 	}
 
-	public String depositAmountCompany(IAccount account, double amount) {
+	public void depositAmountCompany(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Deposit made", amount,account.getAccountNumber());
+			IEntry entry = new Entry(new Date(), "Deposit made", amount, account.getAccountNumber());
 			account.depositMoney(amount);
 			account.addEntry(entry);
 			account.notifyObservers();
-			return "Amount is successfully deposed on account for  :" + account.getOwner().getNames();
 		}
-		return "Unknown Account";
 	}
 
 	public void depositAmountPersonal(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Deposit made", amount,account.getAccountNumber());
+			IEntry entry = new Entry(new Date(), "Deposit made", amount, account.getAccountNumber());
 			account.depositMoney(amount);
 			account.addEntry(entry);
 			if (amount > 500) {
@@ -78,7 +82,7 @@ public class Finco {
 
 	public void withDrwalCompany(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Withdraw made", amount,account.getAccountNumber());
+			IEntry entry = new Entry(new Date(), "Withdraw made", amount, account.getAccountNumber());
 			account.withdraw(amount);
 			account.addEntry(entry);
 			account.notifyObservers();
@@ -87,7 +91,7 @@ public class Finco {
 
 	public void withDrwalPersonal(IAccount account, double amount) {
 		if (account != null) {
-			IEntry entry = new Entry(new Date(), "Withdraw made", amount,account.getAccountNumber());
+			IEntry entry = new Entry(new Date(), "Withdraw made", amount, account.getAccountNumber());
 			account.withdraw(amount);
 			account.addEntry(entry);
 			if (account.getBalance() < 0) {
@@ -102,7 +106,11 @@ public class Finco {
 			depositAmountCompany(account, amount);
 		} else if (account != null && type.equalsIgnoreCase("Person")) {
 			depositAmountPersonal(account, amount);
+<<<<<<< HEAD
 		}else {
+=======
+		} else {
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 			System.out.println("Not found");
 		}
 	}

@@ -7,6 +7,7 @@ import model.ICustomer;
 public class BankAccountFactory {
 
 	static BankAccountFactory factory = null;
+	
 
 	public static CheckingAccount createCheckingAccount(ICustomer customer, String accountNumber) {
 		return new CheckingAccount(customer, accountNumber);

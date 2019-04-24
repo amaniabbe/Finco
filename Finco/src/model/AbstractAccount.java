@@ -92,4 +92,55 @@ public abstract class AbstractAccount implements IAccount {
 		
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((accountNumber == null) ? 0 : accountNumber.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(balance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((entries == null) ? 0 : entries.hashCode());
+		temp = Double.doubleToLongBits(interest);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractAccount other = (AbstractAccount) obj;
+		if (accountNumber == null) {
+			if (other.accountNumber != null)
+				return false;
+		} else if (!accountNumber.equals(other.accountNumber))
+			return false;
+		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
+			return false;
+		if (entries == null) {
+			if (other.entries != null)
+				return false;
+		} else if (!entries.equals(other.entries))
+			return false;
+		if (Double.doubleToLongBits(interest) != Double.doubleToLongBits(other.interest))
+			return false;
+		if (owner == null) {
+			if (other.owner != null)
+				return false;
+		} else if (!owner.equals(other.owner))
+			return false;
+		return true;
+	}
+	
+	
+
+>>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 }
