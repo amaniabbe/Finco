@@ -60,15 +60,16 @@ public class AccountDAO implements IAccountDAO{
 			IAccount account;
 			String accountnumber;
 			Double balance;
-			String owner;
+			String owner, dateofbirth;
 			
 			while(rs.next()) {
 				accountnumber = rs.getString("accountnumber");
 				owner = rs.getString("owner");
 				balance = rs.getDouble("balance");
+			
 				
 				
-				account = new Account(new Person(owner, null,null),accountnumber,balance);
+				account = new Account(new Person(owner, null,null,null),accountnumber,balance);
 				
 				accounts.add(account);				
 			}

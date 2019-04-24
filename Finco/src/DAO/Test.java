@@ -1,12 +1,14 @@
 package DAO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import model.*;
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
 		Address add = new Address();
 		add.setCity("company city");
@@ -22,10 +24,15 @@ public class Test {
 		
 		ICompany c = new Company("company1", "Emain1", 10, add);
 		ICompany c2 = new Company("company2", "Emain2", 10, add);
+		SimpleDateFormat  f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date Dat = new Date() ; 
+		String x = "2019-04-23 06:59:37" ; 
+		String dat = f.format(Dat);
+	    Date date1 = f.parse(dat);
+	    System.out.println(date1);
+		IPerson p = new Person("person1", "Emain1", add2, date1);
 		
-		IPerson p = new Person("person1", "Emain1", add2);
-		
-		IPerson p2 = new Person("person2", "Emain2", add2);
+		IPerson p2 = new Person("person2", "Emain2", add2, date1);
 		
 		IAccount a = new Account(c,"comp1 Acc # 1", 0);
 		a.addEntry(new Entry(new Date(), "desc", 100, a.getAccountNumber()));

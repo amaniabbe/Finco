@@ -92,32 +92,22 @@ public class PersonDAO implements IPersonDAO{
 				address.setState(state);
 				address.setStreet(street);
 				address.setZipCode(zipcode);
+				System.out.println("datahere " + dateofbirth + name);
+			    Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(dateofbirth);
 				
-				
-				person = new Person(name,emailAddress,address);
+				person = new Person(name,emailAddress,address,date1);
 				persons.add(person);
 							
 			}
 			
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("person select: " +e.getMessage());
         }
 		
 		return persons;
 	}
 
-	@Override
-	public boolean updateCustomer(IPerson customer) {
-		
-		return false;
-	}
 
-	@Override
-	public boolean deleteCustomer(String name) {
-		
-       
-		return false;
-	}
 
 	@Override
 	public boolean addCustomer(IPerson customer) {
@@ -136,7 +126,8 @@ public class PersonDAO implements IPersonDAO{
 
 		    // Set the values
 		    pstmt.setString(1, customer.getNames());
-		    pstmt.setString(2, new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss") ;
+		    pstmt.setString(2, f.format(customer.getDateofBirth()));
 		    pstmt.setString(3, customer.getEMail());	    
 		    pstmt.setString(4, customer.getAddress().getState());
 		    pstmt.setString(5, customer.getAddress().getCity());
