@@ -1,4 +1,4 @@
-package CreditCard.View;
+package ccard.ccardView;
 
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;

@@ -36,6 +36,13 @@ public class PersonDAO implements IPersonDAO{
 	}
 	
 	void init() {	
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "CREATE TABLE IF NOT EXISTS person (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
@@ -65,8 +72,15 @@ public class PersonDAO implements IPersonDAO{
 
 	@Override
 	public List<IPerson> getAllcustomers() {
+		persons.clear();
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		String sql = "SELECT * FROM person;";
+		String sql = "SELECT * FROM person ;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
             // get all values a new table
@@ -95,6 +109,7 @@ public class PersonDAO implements IPersonDAO{
 			    Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(dateofbirth);
 				
 				person = new Person(name,emailAddress,address,date1);
+				if(!persons.contains(person))
 				persons.add(person);
 							
 			}
@@ -110,6 +125,14 @@ public class PersonDAO implements IPersonDAO{
 
 	@Override
 	public boolean addCustomer(IPerson customer) {
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "INSERT INTO person("
 				+ "	name,"
                 + "	dateofbirth,"

@@ -1,20 +1,24 @@
 package Bank.View;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import Bank.controller.BankMain;
-import CreditCard.View.CreditDeposite;
+import DAO.SystemDAOmanager;
 import Default.View.AddCompAcc;
 import Default.View.DefaultMainView;
 import Default.View.Deposit;
 import Default.View.Refresh;
 import Default.View.Withdraw;
 import model.IAccount;
+import model.ICompany;
 import model.ICustomer;
+import model.IPerson;
 
 public class BankMainView extends DefaultMainView {
 
@@ -108,7 +112,7 @@ public class BankMainView extends DefaultMainView {
 		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
 		if (selection >= 0) {
 			String accnr = (String) model.getValueAt(selection, 0);
-			accountType = (String)model.getValueAt(selection, 4);
+			accountType = (String) model.getValueAt(selection, 4);
 
 			// Show the dialog for adding withdraw amount for the current mane
 			BankWithdraw wd = new BankWithdraw(this, accnr);
@@ -121,8 +125,28 @@ public class BankMainView extends DefaultMainView {
 
 	@Override
 	protected void JButtonAddinterest_actionPerformed(ActionEvent event) {
-	    main.addInterest();
-	    refre();
+		main.addInterest();
+		refre();
 	}
-	
+
+	@Override
+	protected void JButtonExit_actionPerformed(ActionEvent event) {
+		List<IPerson> persons = new ArrayList<>();
+		List<ICompany> companies = new ArrayList<>();
+		System.out.println(main.persons.size());
+		for (ICustomer c : main.persons) {
+			if (c instanceof IPerson) {
+				persons.add((IPerson) c);
+				System.out.println(c.getNames());
+			} else {
+				companies.add((ICompany) c);
+				System.out.println(c.getNames());
+			}
+
+		}
+		new SystemDAOmanager().addCompanies(companies);
+		new SystemDAOmanager().addPersons(persons);
+		System.exit(0);
+	}
+
 }

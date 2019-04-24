@@ -9,10 +9,13 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import DAO.SystemDAOmanager;
 import Default.View.DefaultMainView.SymAction;
 import controller.Finco;
 import model.IAccount;
+import model.ICompany;
 import model.ICustomer;
+import model.IPerson;
 
 import javax.swing.*;
 
@@ -185,6 +188,20 @@ public class DefaultMainView extends javax.swing.JFrame {
 
 	void exitApplication() {
 		try {
+			List<IPerson> persons = new ArrayList<>();
+			List<ICompany> companies = new ArrayList<>();
+			for (ICustomer c : finco.persons) {
+				if (c instanceof IPerson) {
+					persons.add((IPerson) c);
+					System.out.println(c.getNames());
+				} else {
+					companies.add((ICompany) c);
+					System.out.println(c.getNames());
+				}
+			
+			}
+			new SystemDAOmanager().addCompanies(companies);
+			new SystemDAOmanager().addPersons(persons);
 			this.setVisible(false); // hide the Frame
 			this.dispose(); // free the system resources
 			System.exit(0); // close the application
@@ -200,9 +217,23 @@ public class DefaultMainView extends javax.swing.JFrame {
 		}
 	}
 
-	void DefaultMainView_windowClosing(java.awt.event.WindowEvent event) {
+	protected void DefaultMainView_windowClosing(java.awt.event.WindowEvent event) {
 		// to do: code goes here.
-
+		List<IPerson> persons = new ArrayList<>();
+		List<ICompany> companies = new ArrayList<>();
+		for (ICustomer c : finco.persons) {
+			if (c instanceof IPerson) {
+				persons.add((IPerson) c);
+				System.out.println(c.getNames());
+			} else {
+				companies.add((ICompany) c);
+				System.out.println(c.getNames());
+			}
+		
+		}
+		new SystemDAOmanager().addCompanies(companies);
+		new SystemDAOmanager().addPersons(persons);
+	
 		DefaultMainView_windowClosing_Interaction1(event);
 	}
 
@@ -234,7 +265,19 @@ public class DefaultMainView extends javax.swing.JFrame {
 
 	// When the Exit button is pressed this code gets executed
 	// this will exit from the system
-	void JButtonExit_actionPerformed(java.awt.event.ActionEvent event) {
+	protected void JButtonExit_actionPerformed(java.awt.event.ActionEvent event) {
+		List<IPerson> persons = new ArrayList<>();
+		List<ICompany> companies = new ArrayList<>();
+		for (ICustomer c : finco.persons) {
+			if (c instanceof IPerson) {
+				persons.add((IPerson) c);
+			} else {
+				companies.add((ICompany) c);
+			}
+		
+		}
+		new SystemDAOmanager().addCompanies(companies);
+		new SystemDAOmanager().addPersons(persons);
 		System.exit(0);
 	}
 
@@ -304,10 +347,6 @@ public class DefaultMainView extends javax.swing.JFrame {
 		finco.addInterest();
 		refresh();
 
-	}
-
-	public Finco getFinco() {
-		return finco;
 	}
 
 	

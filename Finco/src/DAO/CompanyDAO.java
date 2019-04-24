@@ -35,6 +35,14 @@ public class CompanyDAO  implements ICompanyDAO{
 	}
 	
 	void init() {	
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "CREATE TABLE IF NOT EXISTS company (\n"
                 + "	id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name text NOT NULL,\n"
@@ -61,6 +69,13 @@ public class CompanyDAO  implements ICompanyDAO{
 	
 	@Override
 	public List<ICompany> getAllcustomers() {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "SELECT * FROM company;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
@@ -92,6 +107,7 @@ public class CompanyDAO  implements ICompanyDAO{
 				address.setZipCode(zipcode);
 				
 				company = new Company(name,emailAddress,numberofemployees,address);
+				if(!companies.contains(company))
 				companies.add(company);
 								
 			}
@@ -116,6 +132,13 @@ public class CompanyDAO  implements ICompanyDAO{
 
 	@Override
 	public boolean addCustomer(ICompany customer) {
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		String sql = "INSERT INTO company("
 				+ "	name,"

@@ -17,19 +17,25 @@ public class AccountDAO implements IAccountDAO{
 	String url = "jdbc:sqlite:finco/src/Storage/FincoDatabase.db";
 	
 	
-	public AccountDAO(List<IAccount> accounts) {
+	public AccountDAO(List<IAccount> accounts){
 		
 		this.accounts = accounts;
 		this.init();
 	}
 	
-    public AccountDAO() {
+    public AccountDAO(){
 		
 		this.accounts = new ArrayList<>();
 		this.init();
 	}
 	
 	void init() {	
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String sql = "CREATE TABLE IF NOT EXISTS account (\n"
                 	 + "id integer PRIMARY KEY AUTOINCREMENT,\n"
                      + "accountnumber text NOT NULL,\n"
@@ -50,6 +56,12 @@ public class AccountDAO implements IAccountDAO{
 
 	@Override
 	public List<IAccount> getAllAccounts() {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String sql = "SELECT * FROM account;";
 		try (Connection conn = DriverManager.getConnection(url);
                 Statement stmt = conn.createStatement()) {
@@ -70,7 +82,7 @@ public class AccountDAO implements IAccountDAO{
 				
 				
 				account = new Account(new Person(owner, null,null,null),accountnumber,balance);
-				
+				if(!accounts.contains(account))
 				accounts.add(account);				
 			}
 			
@@ -97,6 +109,12 @@ public class AccountDAO implements IAccountDAO{
 
 	@Override
 	public boolean addAccount(IAccount account) {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String sql = "INSERT INTO account("
                 + "accountnumber,"
                 + "balance,"
