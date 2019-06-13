@@ -92,8 +92,6 @@ public abstract class AbstractAccount implements IAccount {
 		
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -141,6 +139,4 @@ public abstract class AbstractAccount implements IAccount {
 	}
 	
 	
-
->>>>>>> 359e26a52301ba4fc6f4f05f036957332f3e473f
 }
